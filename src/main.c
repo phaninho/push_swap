@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:19:33 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/05 16:13:52 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/05 16:45:14 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 void		call_fctn(char **av)
 {
 	(void)av;
-	char	str[4];
-
+	char	str[5];
 //	if (!(str = (char *)malloc(sizeof(char) * 4)))
 //		return ;
 	ft_putendl("entrer une instruction");
-	fgets(str, sizeof str, stdin);
-	ft_putendl(str);
+	while (fgets(str, sizeof str, stdin))
+	{
+		if (str[0] == '\n')
+			break;
+	}
+	ft_putstr("sortie du fgets\n");
 }
 
 int			check_av(int ac, char **av)
