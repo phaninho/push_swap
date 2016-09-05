@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:21:37 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/05 12:25:03 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/05 16:07:28 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,7 @@
 
 # include "libft.h"
 # include <stdlib.h>
+# include <stdio.h>
+# include <limits.h>
 
 #endif
