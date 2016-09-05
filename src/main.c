@@ -6,11 +6,18 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:19:33 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/05 16:45:14 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/05 16:55:03 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int			check_instruction(char *str)
+{
+	if (ft_strcmp(str, "sa"))
+		ft_putendl("ins Error");
+	return (1);
+}
 
 void		call_fctn(char **av)
 {
@@ -21,7 +28,7 @@ void		call_fctn(char **av)
 	ft_putendl("entrer une instruction");
 	while (fgets(str, sizeof str, stdin))
 	{
-		if (str[0] == '\n')
+		if (str[0] == '\n' || check_instruction(str))
 			break;
 	}
 	ft_putstr("sortie du fgets\n");
