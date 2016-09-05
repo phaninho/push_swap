@@ -6,7 +6,7 @@
 #    By: stmartin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/04 14:21:39 by stmartin          #+#    #+#              #
-#    Updated: 2016/09/05 12:29:04 by stmartin         ###   ########.fr        #
+#    Updated: 2016/09/05 12:32:08 by stmartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC_NAME = main.c \
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = -lft
-NAME = push_swap
+NAME = checker
 
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
