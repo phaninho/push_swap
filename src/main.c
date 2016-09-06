@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:19:33 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/06 16:43:25 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/06 16:46:02 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ int			check_double(int ac, int *pilea)
 		j = i + 1;
 		while (j < ac)
 		{
-			//if (j == i && j + 1 < ac)
-			//	j++;
 			if (pilea[i] == pilea[j])
 			{
 				ft_putendl("doublons detected, Error");
