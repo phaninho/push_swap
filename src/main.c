@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:19:33 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/06 15:43:51 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/06 16:43:25 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,41 @@ int			check_instruction(char *str)
 	return (0);
 }
 
-void		call_fctn(char **av)
+int			check_double(int ac, int *pilea)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < ac)
+	{
+		j = i + 1;
+		while (j < ac)
+		{
+			//if (j == i && j + 1 < ac)
+			//	j++;
+			if (pilea[i] == pilea[j])
+			{
+				ft_putendl("doublons detected, Error");
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+void		call_fctn(char **av, int ac, int *pilea)
 {
 	(void)av;
 	char	*str;
+
+	if (check_double(ac, pilea))
+	{
+		ft_putendl("Error");
+		return ;
+	}
 	if (!(str = (char *)malloc(sizeof(char) * 5)))
 		return ;
 	str[4] = '\0';
@@ -65,15 +96,12 @@ void		call_fctn(char **av)
 	ft_putstr("sortie du fgets\n");
 }
 
-int			check_av(int ac, char **av)
+int			check_av(char **av, int *nb)
 {
 	int		x;
 	int		y;
-	int		*nb;
 
-	nb = 0;
 	x = 1;
-	nb = (int *)malloc(sizeof(int) * (ac - 1));
 	if (av && av[x])
 	{
 		while (av && av[x])
@@ -81,7 +109,7 @@ int			check_av(int ac, char **av)
 			y = 0;
 			while (av[x][y] || av[x][y] != ' ' || av[x][y] != '\n')
 			{
-				if (ft_isdigit(av[x][y]))
+				if (ft_isdigit(av[x][y]) || av[x][y] == '-')
 				{
 					y++;
 					if (av[x][y] == '\0')
@@ -111,8 +139,11 @@ int			check_av(int ac, char **av)
 
 int			main(int ac, char **av)
 {
-	if (ac > 1 && check_av(ac, av))
-		call_fctn(av);
+	int		*nb;
+
+	nb = (int *)malloc(sizeof(int) * (ac - 1));
+	if (ac > 1 && check_av(av, nb))
+		call_fctn(av, ac, nb);
 	else
 		ft_putendl("Need arguments, please enter numbers seperate by spaces");
 	return (0);
