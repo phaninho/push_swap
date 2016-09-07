@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   manip_pile.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/05 12:21:37 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/07 15:22:44 by stmartin         ###   ########.fr       */
+/*   Created: 2016/09/07 13:57:55 by stmartin          #+#    #+#             */
+/*   Updated: 2016/09/07 15:24:47 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+#include "push_swap.h"
 
-# include "libft.h"
-# include <stdlib.h>
-# include <stdio.h>
-# include <limits.h>
-
-int			check_av(char **av, long *nb, int *pilea);
-int			check_double(int ac, int *pilea);
-int			check_instruction(char *str, int *lim, int *pilea);
-void		call_fctn(char **av, int ac, int *pilea);
-void		do_sa(int *lim, int *pilea);
-
-#endif
+void		do_sa(int *lim, int *pilea)
+{
+	if (*lim > 2)
+		ft_swap(&pilea[0], &pilea[1]);
+}
