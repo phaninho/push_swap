@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:19:33 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/06 16:46:02 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/07 12:42:06 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ int			check_instruction(char *str)
 		ft_putendl("entree correct");
 	else
 	{
-		ft_putstr("mauvais entree\n");
+		ft_putstr("Error, mauvais entree\n");
 		return (1);
 	}
 	return (0);
 }
 
-int			check_double(int ac, int *pilea)
+int			check_double(int ac, long *pilea)
 {
 	int		i;
 	int		j;
@@ -62,7 +62,7 @@ int			check_double(int ac, int *pilea)
 		{
 			if (pilea[i] == pilea[j])
 			{
-				ft_putendl("doublons detected, Error");
+				ft_putendl("Error, doublons detected");
 				return (1);
 			}
 			j++;
@@ -72,16 +72,13 @@ int			check_double(int ac, int *pilea)
 	return (0);
 }
 
-void		call_fctn(char **av, int ac, int *pilea)
+void		call_fctn(char **av, int ac, long *pilea)
 {
 	(void)av;
 	char	*str;
 
 	if (check_double(ac, pilea))
-	{
-		ft_putendl("Error");
 		return ;
-	}
 	if (!(str = (char *)malloc(sizeof(char) * 5)))
 		return ;
 	str[4] = '\0';
@@ -94,7 +91,7 @@ void		call_fctn(char **av, int ac, int *pilea)
 	ft_putstr("sortie du fgets\n");
 }
 
-int			check_av(char **av, int *nb)
+int			check_av(char **av, long *nb)
 {
 	int		x;
 	int		y;
@@ -107,7 +104,7 @@ int			check_av(char **av, int *nb)
 			y = 0;
 			while (av[x][y] || av[x][y] != ' ' || av[x][y] != '\n')
 			{
-				if (ft_isdigit(av[x][y]) || av[x][y] == '-')
+				if (ft_isdigit(av[x][y]) || (av[x][y] == '-' && ft_isdigit(av[x][y + 1])))
 				{
 					y++;
 					if (av[x][y] == '\0')
@@ -115,32 +112,34 @@ int			check_av(char **av, int *nb)
 				}
 				else
 				{
-					ft_putendl("Error");
-					break;
+					ft_putendl("Error, not digit detected");
+					return (1);
 				}
 			}
 			//probleme avec atoi, il transforme les int overflow en int
-			nb[x - 1] = ft_atoi(av[x]);
+			nb[x - 1] = ft_atol(av[x]);
+			ft_putnbr(nb[x - 1]);
+			ft_putchar('\n');
 			if (nb[x - 1] < INT_MIN || nb[x - 1] > INT_MAX)
 			{
-				ft_putendl("Error");
-				return (0);
+				ft_putendl("Error, int overflow");
+				return (1);
 			}
 			x++;
 		}
-		return (1);
+		return (0);
 	}
 	else
 		ft_putendl("Error");
-	return (0);
+	return (1);
 }
 
 int			main(int ac, char **av)
 {
-	int		*nb;
+	long	*nb;
 
-	nb = (int *)malloc(sizeof(int) * (ac - 1));
-	if (ac > 1 && check_av(av, nb))
+	nb = (long *)malloc(sizeof(long) * (ac - 1));
+	if (ac > 1 && (!check_av(av, nb)))
 		call_fctn(av, ac, nb);
 	else
 		ft_putendl("Need arguments, please enter numbers seperate by spaces");

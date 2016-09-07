@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 10:06:19 by stmartin          #+#    #+#             */
-/*   Updated: 2016/05/12 15:57:20 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/07 12:30:45 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+long				ft_atol(const char *str);
 int					ft_abs(int nb);
 double				ft_p2(double nb);
 double				ft_double_abs(double nb);
