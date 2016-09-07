@@ -6,13 +6,13 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:42:10 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/07 15:33:19 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/07 19:18:09 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			check_instruction(char *str, int *lim, int *pilea)
+int			check_instruction(char *str, t_data dt)
 {
 	int		i;
 
@@ -23,11 +23,11 @@ int			check_instruction(char *str, int *lim, int *pilea)
 		return (1);
 	}
 	else if (!(ft_strcmp(str, "sa\n")))
-		do_sa(lim, pilea);
+		do_sa(dt.lima, dt.pilea);
 	else if (!(ft_strcmp(str, "sb\n")))
-		ft_putendl("entree correct");
+		do_sa(dt.limb, dt.pileb);
 	else if (!(ft_strcmp(str, "ss\n")))
-		ft_putendl("entree correct");
+		do_ss(dt);
 	else if (!(ft_strcmp(str, "pa\n")))
 		ft_putendl("entree correct");
 	else if (!(ft_strcmp(str, "pb\n")))
@@ -49,10 +49,21 @@ int			check_instruction(char *str, int *lim, int *pilea)
 		ft_putstr_fd("Error, mauvais entree\n", 2);
 		return (1);
 	}
-	while (i < *lim)
+	while (dt.pilea && i < dt.lima)
 	{
+		ft_putendl("pile a :");
 		ft_putchar('[');
-		ft_putnbr(pilea[i]);
+		ft_putnbr(dt.pilea[i]);
+		ft_putchar(']');
+		ft_putchar('\n');
+		i++;
+	}
+	i = 0;
+	while (dt.pileb && i < dt.limb)
+	{
+		ft_putendl("pile b :");
+		ft_putchar('[');
+		ft_putnbr(dt.pileb[i]);
 		ft_putchar(']');
 		ft_putchar('\n');
 		i++;
