@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:19:33 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/07 12:42:06 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/07 13:31:18 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,7 @@ int			check_av(char **av, long *nb)
 					return (1);
 				}
 			}
-			//probleme avec atoi, il transforme les int overflow en int
 			nb[x - 1] = ft_atol(av[x]);
-			ft_putnbr(nb[x - 1]);
-			ft_putchar('\n');
 			if (nb[x - 1] < INT_MIN || nb[x - 1] > INT_MAX)
 			{
 				ft_putendl("Error, int overflow");
