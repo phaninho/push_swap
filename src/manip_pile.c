@@ -6,28 +6,28 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:57:55 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/07 19:13:50 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/08 15:44:15 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		do_sa(int lima, int *pilea)
+void		do_sa(t_data *dta)
 {
-	if (lima > 2)
-		ft_swap(&pilea[0], &pilea[1]);
+//	if (lima > 2)
+//		ft_swap(&pilea[0], &pilea[1]);
 }
 
-void		do_sb(int limb, int *pileb)
+void		do_sb(t_data *dtb)
 {
-	if (limb > 2)
-		ft_swap(&pileb[0], &pileb[1]);
+//	if (limb > 2)
+//		ft_swap(&pileb[0], &pileb[1]);
 }
 
-void		do_ss(t_data dt)
+void		do_ss(t_data *dta, t_datb *dtb)
 {
-	do_sa(dt.lima, dt.pilea);
-	do_sb(dt.limb, dt.pileb);
+	do_sa(dta);
+	do_sb(dtb);
 }
 
 /*

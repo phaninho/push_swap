@@ -6,13 +6,13 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:42:10 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/07 19:18:09 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/08 15:46:17 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			check_instruction(char *str, t_data dt)
+int			check_instruction(char *str, t_data *dta, t_datb *dtb)
 {
 	int		i;
 
@@ -23,11 +23,11 @@ int			check_instruction(char *str, t_data dt)
 		return (1);
 	}
 	else if (!(ft_strcmp(str, "sa\n")))
-		do_sa(dt.lima, dt.pilea);
+		do_sa(dta);
 	else if (!(ft_strcmp(str, "sb\n")))
-		do_sa(dt.limb, dt.pileb);
+		do_sb(dtb);
 	else if (!(ft_strcmp(str, "ss\n")))
-		do_ss(dt);
+		do_ss(dta, dtb);
 	else if (!(ft_strcmp(str, "pa\n")))
 		ft_putendl("entree correct");
 	else if (!(ft_strcmp(str, "pb\n")))
@@ -49,29 +49,10 @@ int			check_instruction(char *str, t_data dt)
 		ft_putstr_fd("Error, mauvais entree\n", 2);
 		return (1);
 	}
-	while (dt.pilea && i < dt.lima)
-	{
-		ft_putendl("pile a :");
-		ft_putchar('[');
-		ft_putnbr(dt.pilea[i]);
-		ft_putchar(']');
-		ft_putchar('\n');
-		i++;
-	}
-	i = 0;
-	while (dt.pileb && i < dt.limb)
-	{
-		ft_putendl("pile b :");
-		ft_putchar('[');
-		ft_putnbr(dt.pileb[i]);
-		ft_putchar(']');
-		ft_putchar('\n');
-		i++;
-	}
 	return (0);
 }
 
-int			check_double(int lim, int *pilea)
+int			check_double(int lim, long *nb)
 {
 	int		i;
 	int		j;
@@ -82,7 +63,7 @@ int			check_double(int lim, int *pilea)
 		j = i + 1;
 		while (j < lim)
 		{
-			if (pilea[i] == pilea[j])
+			if (nb[i] == nb[j])
 			{
 				ft_putendl("Error, doublons detected");
 				return (1);
@@ -94,11 +75,41 @@ int			check_double(int lim, int *pilea)
 	return (0);
 }
 
-int			check_av(char **av, long *nb, int *pilea)
+t_data		*list_newnode(int nb)
+{
+	t_data	*new;
+
+	if (!(new = (t_data *)malloc(sizeof(t_data))))
+		return (NULL);
+	new->pilea = nb;
+	new->next = NULL;
+	return (new);
+}
+
+void		list_addend(t_data *new, t_data *full_list)
+{
+	t_data	*tmp;
+
+	if (!full_list || !new)
+		return ;
+	if (!full_list && new)
+		full_list = new;
+	else
+	{
+		tmp = full_list;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
+}
+
+int			check_av(char **av, long *nb, t_data *dta)
 {
 	int		x;
 	int		y;
 	int		lim;
+	t_data	*newelem;
+
 	x = 1;
 	if (av && av[x])
 	{
@@ -131,7 +142,9 @@ int			check_av(char **av, long *nb, int *pilea)
 		x = 0;
 		while (x < lim)
 		{
-			pilea[x] = nb[x];
+			newelem = list_newnode(nb[x]);
+			list_addend(newelem, dta);
+		//	pilea[x] = nb[x];
 			x++;
 		}
 		return (0);
