@@ -87,27 +87,16 @@ void		list_addend(t_data *new, t_data **full_list)
 {
 	t_data	*tmp;
 
-	if (!*full_list && !new) // leprobleme viens dici
-	{
-		ft_putstr("tout vide\n");
+	if (!*full_list && !new)
 		return ;
-	}
 	if (!*full_list && new)
-	{
-//		ft_putnbr(new->pilea);
-		ft_putstr("full_list vide\n");
 		*full_list = new;
-		ft_putnbr((*full_list)->pilea);
-		ft_putstr("\n");
-	}
 	else
 	{
 		tmp = *full_list;
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new;
-	//	ft_putstr("parcour chaine\n");
-	//	ft_putnbr((*full_list)->pilea);
 	}
 }
 
