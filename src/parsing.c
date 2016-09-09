@@ -111,7 +111,7 @@ void		list_addend(t_data *new, t_data **full_list)
 	}
 }
 
-int			check_av(char **av, long *nb, t_data *dta)
+int			check_av(char **av, long *nb, t_data **dta)
 {
 	int		x;
 	int		y;
@@ -151,16 +151,9 @@ int			check_av(char **av, long *nb, t_data *dta)
 		while (x < lim)
 		{
 			newelem = list_newnode(nb[x]);
-			list_addend(newelem, &dta);
+			list_addend(newelem, dta);
 			x++;
 		}
-		while (dta->next)
-		{
-			newelem = dta->next;
-			ft_putnbr(newelem->pilea);
-		}
-		ft_putstr("dta pile\n");
-		ft_putnbr(dta->pilea);
 		return (0);
 	}
 	else

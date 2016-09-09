@@ -32,7 +32,7 @@ typedef struct		s_datb
 	struct s_datb	*next;
 }					t_datb;
 
-int					check_av(char **av, long *nb, t_data *dta);
+int					check_av(char **av, long *nb, t_data **dta);
 int					check_double(int ac, long *nb);
 int					check_instruction(char *str, t_data *dta, t_datb *dtb);
 void				call_fctn(char **av, t_data *dta, t_datb *dtb, long *nb);
