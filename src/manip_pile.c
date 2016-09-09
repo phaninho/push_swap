@@ -22,6 +22,7 @@ void		do_sa(t_data *dta)
 void		do_sb(t_datb *dtb)
 {
 	ft_swap(&dtb->pileb, &dtb->next->pileb);
+
 //	if (limb > 2)
 //		ft_swap(&pileb[0], &pileb[1]);
 }
