@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:42:10 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/08 15:46:17 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/09 16:54:50 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,20 +86,31 @@ t_data		*list_newnode(int nb)
 	return (new);
 }
 
-void		list_addend(t_data *new, t_data *full_list)
+void		list_addend(t_data *new, t_data **full_list)
 {
 	t_data	*tmp;
 
-	if (!full_list || !new)
+	if (!*full_list && !new) // leprobleme viens dici
+	{
+		ft_putstr("tout vide\n");
 		return ;
-	if (!full_list && new)
-		full_list = new;
+	}
+	if (!*full_list && new)
+	{
+//		ft_putnbr(new->pilea);
+		ft_putstr("full_list vide\n");
+		*full_list = new;
+		ft_putnbr((*full_list)->pilea);
+		ft_putstr("\n");
+	}
 	else
 	{
-		tmp = full_list;
+		tmp = *full_list;
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new;
+	//	ft_putstr("parcour chaine\n");
+	//	ft_putnbr((*full_list)->pilea);
 	}
 }
 
@@ -138,15 +149,21 @@ int			check_av(char **av, long *nb, t_data *dta)
 			}
 			x++;
 		}
-		lim = x;
+		lim = x - 1;
 		x = 0;
 		while (x < lim)
 		{
 			newelem = list_newnode(nb[x]);
-			list_addend(newelem, dta);
-		//	pilea[x] = nb[x];
+			list_addend(newelem, &dta);
 			x++;
 		}
+		while (dta->next)
+		{
+			newelem = dta->next;
+			ft_putnbr(newelem->pilea);
+		}
+		ft_putstr("dta pile\n");
+		ft_putnbr(dta->pilea);
 		return (0);
 	}
 	else

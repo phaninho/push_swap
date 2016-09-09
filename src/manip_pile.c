@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:57:55 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/08 15:44:15 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/09 12:11:55 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void		do_sa(t_data *dta)
 {
+	ft_swap(&dta->pilea, &dta->next->pilea);
 //	if (lima > 2)
 //		ft_swap(&pilea[0], &pilea[1]);
 }
 
-void		do_sb(t_data *dtb)
+void		do_sb(t_datb *dtb)
 {
+	ft_swap(&dtb->pileb, &dtb->next->pileb);
 //	if (limb > 2)
 //		ft_swap(&pileb[0], &pileb[1]);
 }

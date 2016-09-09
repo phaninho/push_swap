@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:21:37 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/08 15:45:55 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/09 12:32:20 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ typedef struct		s_data
 {
 	int				lima;
 	int				pilea;
-	struct t_data	*next;
+	struct s_data	*next;
 }					t_data;
 
 typedef struct		s_datb
 {
 	int				limb;
 	int				pileb;
-	struct t_datb	*next;
+	struct s_datb	*next;
 }					t_datb;
 
 int					check_av(char **av, long *nb, t_data *dta);
