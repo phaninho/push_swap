@@ -14,6 +14,15 @@
 
 int			check_instruction(char *str, t_data *dta, t_datb *dtb)
 {
+	t_data *tmp;
+	tmp = dta;
+		ft_putstr("avant\n");
+	while (tmp)
+	{
+		ft_putnbr(tmp->pilea);
+		tmp = tmp->next;
+		ft_putchar('\n');
+	}
 	if (ft_strlen(str) > 4)
 	{
 		ft_putendl("Error");
@@ -45,6 +54,14 @@ int			check_instruction(char *str, t_data *dta, t_datb *dtb)
 	{
 		ft_putstr_fd("Error, mauvais entree\n", 2);
 		return (1);
+	}
+	tmp = dta;
+		ft_putstr("apres\n");
+	while (tmp)
+	{
+		ft_putnbr(tmp->pilea);
+		tmp = tmp->next;
+		ft_putchar('\n');
 	}
 	return (0);
 }
