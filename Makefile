@@ -15,7 +15,7 @@ OBJ_PATH = ./obj/
 INC_PATH = ./include/ ./libft/
 LIB_PATH = ./libft/
 
-SRC_NAME = main.c parsing.c manip_pile.c
+SRC_NAME = main.c parsing.c manip_pile.c list.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = -lft

@@ -28,11 +28,7 @@ void		do_ss(t_data *dta, t_datb *dtb)
 	do_sb(dtb);
 }
 
-/*
-void		do_pb(t_data dt)
-{
-	if (dt.lima > 0)
-	{
-		
-	}
-}*/
+
+//void		do_pb(t_data *dta, t_datb *dtb)
+//{
+//}

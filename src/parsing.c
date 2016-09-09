@@ -89,34 +89,6 @@ int			check_double(int lim, long *nb)
 	return (0);
 }
 
-t_data		*list_newnode(int nb)
-{
-	t_data	*new;
-
-	if (!(new = (t_data *)malloc(sizeof(t_data))))
-		return (NULL);
-	new->pilea = nb;
-	new->next = NULL;
-	return (new);
-}
-
-void		list_addend(t_data *new, t_data **full_list)
-{
-	t_data	*tmp;
-
-	if (!*full_list && !new)
-		return ;
-	if (!*full_list && new)
-		*full_list = new;
-	else
-	{
-		tmp = *full_list;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-}
-
 int			check_av(char **av, long *nb, t_data **dta)
 {
 	int		x;
@@ -156,8 +128,8 @@ int			check_av(char **av, long *nb, t_data **dta)
 		x = 0;
 		while (x < lim)
 		{
-			newelem = list_newnode(nb[x]);
-			list_addend(newelem, dta);
+			newelem = list_newnodea(nb[x]);
+			list_addenda(newelem, dta);
 			x++;
 		}
 		return (0);
