@@ -14,9 +14,6 @@
 
 int			check_instruction(char *str, t_data *dta, t_datb *dtb)
 {
-	int		i;
-
-	i = 0;
 	if (ft_strlen(str) > 4)
 	{
 		ft_putendl("Error");
