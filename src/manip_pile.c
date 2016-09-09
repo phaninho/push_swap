@@ -15,16 +15,11 @@
 void		do_sa(t_data *dta)
 {
 	ft_swap(&dta->pilea, &dta->next->pilea);
-//	if (lima > 2)
-//		ft_swap(&pilea[0], &pilea[1]);
 }
 
 void		do_sb(t_datb *dtb)
 {
 	ft_swap(&dtb->pileb, &dtb->next->pileb);
-
-//	if (limb > 2)
-//		ft_swap(&pileb[0], &pileb[1]);
 }
 
 void		do_ss(t_data *dta, t_datb *dtb)
