@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:21:37 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/09 12:32:20 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/14 12:36:21 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ void				call_fctn(char **av, t_data *dta, t_datb *dtb, long *nb);
 void				do_sa(t_data *dta);
 void				do_sb(t_datb *datb);
 void				do_ss(t_data *dta, t_datb *dtb);
+t_data				*list_newnodea(int nb);
+void				list_addenda(t_data *new, t_data **full_list);
 
 #endif
