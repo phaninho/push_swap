@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:42:10 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/09 16:54:50 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/14 14:09:31 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,22 @@
 int			check_instruction(char *str, t_data *dta, t_datb *dtb)
 {
 	t_data *tmp;
+	t_datb *tmpb;
+
 	tmp = dta;
-		ft_putstr("avant\n");
+		ft_putstr("avant a:\n");
 	while (tmp)
 	{
 		ft_putnbr(tmp->pilea);
 		tmp = tmp->next;
+		ft_putchar('\n');
+	}
+	tmpb = dtb;
+		ft_putstr("avant b:\n");
+	while (dtb)
+	{
+		ft_putnbr(tmpb->pileb);
+		tmpb = tmpb->next;
 		ft_putchar('\n');
 	}
 	if (ft_strlen(str) > 4)
@@ -37,7 +47,7 @@ int			check_instruction(char *str, t_data *dta, t_datb *dtb)
 	else if (!(ft_strcmp(str, "pa\n")))
 		ft_putendl("entree correct");
 	else if (!(ft_strcmp(str, "pb\n")))
-		ft_putendl("entree correct");
+		do_pb(dta, dtb);
 	else if (!(ft_strcmp(str, "ra\n")))
 		ft_putendl("entree correct");
 	else if (!(ft_strcmp(str, "rb\n")))
@@ -56,11 +66,19 @@ int			check_instruction(char *str, t_data *dta, t_datb *dtb)
 		return (1);
 	}
 	tmp = dta;
-		ft_putstr("apres\n");
+		ft_putstr("apres a:\n");
 	while (tmp)
 	{
 		ft_putnbr(tmp->pilea);
 		tmp = tmp->next;
+		ft_putchar('\n');
+	}
+	tmpb = dtb;
+		ft_putstr("apresb:\n");
+	while (tmpb)
+	{
+		ft_putnbr(tmpb->pileb);
+		tmpb = tmpb->next;
 		ft_putchar('\n');
 	}
 	return (0);
