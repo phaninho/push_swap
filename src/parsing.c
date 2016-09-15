@@ -6,18 +6,18 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:42:10 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/15 15:03:19 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/15 16:18:31 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			check_instruction(char *str, t_data *pilea, t_data *pileb)
+int			check_instruction(char *str, t_data **pilea, t_data **pileb)
 {
 	t_data *tmp;
 	t_data *tmpb;
 
-	tmp = pilea;
+	tmp = *pilea;
 		ft_putstr("avant a:\n");
 	while (tmp)
 	{
@@ -25,7 +25,7 @@ int			check_instruction(char *str, t_data *pilea, t_data *pileb)
 		tmp = tmp->next;
 		ft_putchar('\n');
 	}
-	tmpb = pileb;
+	tmpb = *pileb;
 		ft_putstr("avant b:\n");
 	while (tmpb)
 	{
@@ -39,15 +39,15 @@ int			check_instruction(char *str, t_data *pilea, t_data *pileb)
 		return (1);
 	}
 	else if (!(ft_strcmp(str, "sa\n")))
-		do_sa(pilea);
+		do_sa(*pilea);
 	else if (!(ft_strcmp(str, "sb\n")))
-		do_sb(pileb);
+		do_sb(*pileb);
 	else if (!(ft_strcmp(str, "ss\n")))
-		do_ss(pilea, pileb);
+		do_ss(*pilea, *pileb);
 	else if (!(ft_strcmp(str, "pa\n")))
 		ft_putendl("entree correct");
 	else if (!(ft_strcmp(str, "pb\n")))
-		do_pb(&pilea, &pileb);
+		do_pb(pilea, pileb);
 	else if (!(ft_strcmp(str, "ra\n")))
 		ft_putendl("entree correct");
 	else if (!(ft_strcmp(str, "rb\n")))
@@ -65,7 +65,7 @@ int			check_instruction(char *str, t_data *pilea, t_data *pileb)
 		ft_putstr_fd("Error, mauvais entree\n", 2);
 		return (1);
 	}
-	tmp = pilea;
+	tmp = *pilea;
 		ft_putstr("apres a:\n");
 	while (tmp)
 	{
@@ -73,7 +73,7 @@ int			check_instruction(char *str, t_data *pilea, t_data *pileb)
 		tmp = tmp->next;
 		ft_putchar('\n');
 	}
-	tmpb = pileb;
+	tmpb = *pileb;
 		ft_putstr("apresb:\n");
 	while (tmpb)
 	{

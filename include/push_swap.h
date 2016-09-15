@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:21:37 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/15 15:03:30 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/15 16:16:33 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct		s_data
 
 int					check_av(char **av, long *nb, t_data **dta);
 int					check_double(int ac, long *nb);
-int					check_instruction(char *str, t_data *dta, t_data *dtb);
+int					check_instruction(char *str, t_data **dta, t_data **dtb);
 void				call_fctn(char **av, t_data *dta, t_data *dtb, long *nb);
 void				do_sa(t_data *dta);
 void				do_sb(t_data *dtb);
