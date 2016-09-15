@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:57:55 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/15 17:04:19 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/15 18:39:21 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,22 +86,82 @@ void		do_ra(t_data **pilea)
 {
 	t_data		*newelem;
 
-	newelem = list_newnode((*pilea)->nb);
-	*pilea = (*pilea)->next;
-	list_addend(newelem, pilea);
+	if (*pilea)
+	{
+		newelem = list_newnode((*pilea)->nb);
+		*pilea = (*pilea)->next;
+		list_addend(newelem, pilea);
+	}
 }
 
 void		do_rb(t_data **pileb)
 {
 	t_data		*newelem;
 
-	newelem = list_newnode((*pileb)->nb);
-	*pileb = (*pileb)->next;
-	list_addend(newelem, pileb);
+	if (*pileb)
+	{
+		newelem = list_newnode((*pileb)->nb);
+		*pileb = (*pileb)->next;
+		list_addend(newelem, pileb);
+	}
 }
 
 void		do_rr(t_data **pilea, t_data **pileb)
 {
 	do_ra(pilea);
 	do_rb(pileb);
+}
+
+void		do_rra(t_data **pilea)
+{
+	t_data		*last_node;
+	t_data		*tmp;
+
+	if (*pilea && (*pilea)->next->next)
+	{
+		tmp = *pilea;
+		while (tmp->next)
+		{
+			tmp = tmp->next;
+			if (!tmp->next->next)
+			{
+				last_node = tmp->next;
+				tmp->next = NULL;
+			}
+		}
+		last_node->next = *pilea;
+		*pilea = last_node;
+	}
+	else
+		do_sa(*pilea);
+}
+
+void		do_rrb(t_data **pileb)
+{
+	t_data		*last_node;
+	t_data		*tmp;
+
+	if (*pileb && (*pileb)->next->next)
+	{
+		tmp = *pileb;
+		while (tmp->next)
+		{
+			tmp = tmp->next;
+			if (!tmp->next->next)
+			{
+				last_node = tmp->next;
+				tmp->next = NULL;
+			}
+		}
+		last_node->next = *pileb;
+		*pileb = last_node;
+	}
+	else
+		do_sb(*pileb);
+}
+
+void		do_rrr(t_data **pilea, t_data **pileb)
+{
+	do_rra(pilea);
+	do_rrb(pileb);
 }

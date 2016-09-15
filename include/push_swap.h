@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:21:37 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/15 17:04:50 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/15 17:39:20 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ void				do_pb(t_data **dta, t_data **dtb);
 void				do_ra(t_data **pilea);
 void				do_rb(t_data **pileb);
 void				do_rr(t_data **pilea, t_data **pileb);
+void				do_rra(t_data **pilea);
+void				do_rrb(t_data **pileb);
+void				do_rrr(t_data **pilea, t_data **pileb);
 t_data				*list_newnode(int nb);
 void				list_addend(t_data *newnode, t_data **full_list);
 
