@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:57:55 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/15 15:10:46 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/15 16:30:30 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,23 @@ void		do_pb(t_data **pilea, t_data **pileb)
 	{
 		ft_putendl("entre dans le test, pileb n est pas vide");
 		ft_putnbr((*pileb)->nb);
+		ft_putstr("\n_____________________\n");
 	}
 	newelem = NULL;
 	if (!*pileb && *pilea)
 	{
 		ft_putendl("pileb == NULL pas dta////////////////");
-	//	newelem = list_newnode((*dta)->pilea);
-	//	newelem->next = tmp;
-	//	*dtb = newelem;;
-		*pileb = *pilea;
+		newelem = list_newnode((*pilea)->nb);
+		*pileb = newelem;
 		*pilea = (*pilea)->next;
 	}
-	else if (*pilea)
+	else if (*pilea && *pileb)
 	{
 		ft_putendl("milieu////////////");
 		newelem = list_newnode((*pilea)->nb);
 		newelem->next = tmp;
-		*pileb = tmp;
+		*pileb = newelem;
+		*pilea = (*pilea)->next;
 	}
 	else
 		ft_putendl("pile a vide, rien n a ete fait");
