@@ -6,30 +6,30 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:42:10 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/14 14:09:31 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/15 15:03:19 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			check_instruction(char *str, t_data *dta, t_datb *dtb)
+int			check_instruction(char *str, t_data *pilea, t_data *pileb)
 {
 	t_data *tmp;
-	t_datb *tmpb;
+	t_data *tmpb;
 
-	tmp = dta;
+	tmp = pilea;
 		ft_putstr("avant a:\n");
 	while (tmp)
 	{
-		ft_putnbr(tmp->pilea);
+		ft_putnbr(tmp->nb);
 		tmp = tmp->next;
 		ft_putchar('\n');
 	}
-	tmpb = dtb;
+	tmpb = pileb;
 		ft_putstr("avant b:\n");
-	while (dtb)
+	while (tmpb)
 	{
-		ft_putnbr(tmpb->pileb);
+		ft_putnbr(tmpb->nb);
 		tmpb = tmpb->next;
 		ft_putchar('\n');
 	}
@@ -39,15 +39,15 @@ int			check_instruction(char *str, t_data *dta, t_datb *dtb)
 		return (1);
 	}
 	else if (!(ft_strcmp(str, "sa\n")))
-		do_sa(dta);
+		do_sa(pilea);
 	else if (!(ft_strcmp(str, "sb\n")))
-		do_sb(dtb);
+		do_sb(pileb);
 	else if (!(ft_strcmp(str, "ss\n")))
-		do_ss(dta, dtb);
+		do_ss(pilea, pileb);
 	else if (!(ft_strcmp(str, "pa\n")))
 		ft_putendl("entree correct");
 	else if (!(ft_strcmp(str, "pb\n")))
-		do_pb(dta, dtb);
+		do_pb(&pilea, &pileb);
 	else if (!(ft_strcmp(str, "ra\n")))
 		ft_putendl("entree correct");
 	else if (!(ft_strcmp(str, "rb\n")))
@@ -65,22 +65,23 @@ int			check_instruction(char *str, t_data *dta, t_datb *dtb)
 		ft_putstr_fd("Error, mauvais entree\n", 2);
 		return (1);
 	}
-	tmp = dta;
+	tmp = pilea;
 		ft_putstr("apres a:\n");
 	while (tmp)
 	{
-		ft_putnbr(tmp->pilea);
+		ft_putnbr(tmp->nb);
 		tmp = tmp->next;
 		ft_putchar('\n');
 	}
-	tmpb = dtb;
+	tmpb = pileb;
 		ft_putstr("apresb:\n");
 	while (tmpb)
 	{
-		ft_putnbr(tmpb->pileb);
+		ft_putnbr(tmpb->nb);
 		tmpb = tmpb->next;
 		ft_putchar('\n');
 	}
+	ft_putendl("///////////////////////////////////////////");
 	return (0);
 }
 
@@ -107,7 +108,7 @@ int			check_double(int lim, long *nb)
 	return (0);
 }
 
-int			check_av(char **av, long *nb, t_data **dta)
+int			check_av(char **av, long *nb, t_data **pilea)
 {
 	int		x;
 	int		y;
@@ -146,8 +147,8 @@ int			check_av(char **av, long *nb, t_data **dta)
 		x = 0;
 		while (x < lim)
 		{
-			newelem = list_newnodea(nb[x]);
-			list_addenda(newelem, dta);
+			newelem = list_newnode(nb[x]);
+			list_addend(newelem, pilea);
 			x++;
 		}
 		return (0);

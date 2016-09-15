@@ -6,51 +6,57 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:57:55 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/14 14:27:12 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/15 15:10:46 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		do_sa(t_data *dta)
+void		do_sa(t_data *pilea)
 {
-	ft_swap(&dta->pilea, &dta->next->pilea);
+	if (pilea)
+		ft_swap(&pilea->nb, &pilea->next->nb);
 }
 
-void		do_sb(t_datb *dtb)
+void		do_sb(t_data *pileb)
 {
-	ft_swap(&dtb->pileb, &dtb->next->pileb);
+	if (pileb)
+		ft_swap(&pileb->nb, &pileb->next->nb);
 }
 
-void		do_ss(t_data *dta, t_datb *dtb)
+void		do_ss(t_data *pilea, t_data *pileb)
 {
-	do_sa(dta);
-	do_sb(dtb);
+	do_sa(pilea);
+	do_sb(pileb);
 }
 
-void		do_pb(t_data *dta, t_datb *dtb)
+void		do_pb(t_data **pilea, t_data **pileb)
 {
-	t_datb		*newelem;
-	if (dtb)
+	t_data		*newelem;
+	t_data		*tmp;
+
+	tmp = *pileb;
+	if (*pileb)
 	{
-		ft_putendl("entre dans le test");
-		ft_putnbr(dtb->pileb);
+		ft_putendl("entre dans le test, pileb n est pas vide");
+		ft_putnbr((*pileb)->nb);
 	}
 	newelem = NULL;
-	if (!dtb && dta)
+	if (!*pileb && *pilea)
 	{
-		ft_putendl("debut////////////////");
-		newelem = list_newnodeb(dta->pilea);
-		newelem->next = dtb;
-		dtb = newelem;
-		dta = dta->next;
+		ft_putendl("pileb == NULL pas dta////////////////");
+	//	newelem = list_newnode((*dta)->pilea);
+	//	newelem->next = tmp;
+	//	*dtb = newelem;;
+		*pileb = *pilea;
+		*pilea = (*pilea)->next;
 	}
-	else if (dta)
+	else if (*pilea)
 	{
 		ft_putendl("milieu////////////");
-		newelem = list_newnodeb(dta->pilea);
-		newelem->next = dtb;
-		dtb = newelem;
+		newelem = list_newnode((*pilea)->nb);
+		newelem->next = tmp;
+		*pileb = tmp;
 	}
 	else
 		ft_putendl("pile a vide, rien n a ete fait");

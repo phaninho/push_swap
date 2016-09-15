@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:21:37 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/14 14:07:44 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/15 15:03:30 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,19 @@
 typedef struct		s_data
 {
 	int				lima;
-	int				pilea;
+	int				nb;
 	struct s_data	*next;
 }					t_data;
 
-typedef struct		s_datb
-{
-	int				limb;
-	int				pileb;
-	struct s_datb	*next;
-}					t_datb;
-
 int					check_av(char **av, long *nb, t_data **dta);
 int					check_double(int ac, long *nb);
-int					check_instruction(char *str, t_data *dta, t_datb *dtb);
-void				call_fctn(char **av, t_data *dta, t_datb *dtb, long *nb);
+int					check_instruction(char *str, t_data *dta, t_data *dtb);
+void				call_fctn(char **av, t_data *dta, t_data *dtb, long *nb);
 void				do_sa(t_data *dta);
-void				do_sb(t_datb *dtb);
-void				do_ss(t_data *dta, t_datb *dtb);
-void				do_pb(t_data *dta, t_datb *dtb);
-t_data				*list_newnodea(int nb);
-void				list_addenda(t_data *new, t_data **full_list);
-t_datb				*list_newnodeb(int nb);
-void				list_addendb(t_datb *new, t_datb **full_list);
+void				do_sb(t_data *dtb);
+void				do_ss(t_data *dta, t_data *dtb);
+void				do_pb(t_data **dta, t_data **dtb);
+t_data				*list_newnode(int nb);
+void				list_addend(t_data *newnode, t_data **full_list);
 
 #endif
