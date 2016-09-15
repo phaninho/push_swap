@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:57:55 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/15 16:30:30 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/15 16:34:37 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@ void		do_pb(t_data **pilea, t_data **pileb)
 	t_data		*tmp;
 
 	tmp = *pileb;
-	if (*pileb)
-	{
-		ft_putendl("entre dans le test, pileb n est pas vide");
-		ft_putnbr((*pileb)->nb);
-		ft_putstr("\n_____________________\n");
-	}
 	newelem = NULL;
 	if (!*pileb && *pilea)
 	{
@@ -57,6 +51,32 @@ void		do_pb(t_data **pilea, t_data **pileb)
 		newelem->next = tmp;
 		*pileb = newelem;
 		*pilea = (*pilea)->next;
+	}
+	else
+		ft_putendl("pile a vide, rien n a ete fait");
+}
+
+void		do_pa(t_data **pilea, t_data **pileb)
+{
+	t_data		*newelem;
+	t_data		*tmp;
+
+	tmp = *pilea;
+	newelem = NULL;
+	if (!*pilea && *pileb)
+	{
+		ft_putendl("pilea == NULL pas dta////////////////");
+		newelem = list_newnode((*pileb)->nb);
+		*pilea = newelem;
+		*pileb = (*pileb)->next;
+	}
+	else if (*pilea && *pileb)
+	{
+		ft_putendl("milieu////////////");
+		newelem = list_newnode((*pileb)->nb);
+		newelem->next = tmp;
+		*pilea = newelem;
+		*pileb = (*pileb)->next;
 	}
 	else
 		ft_putendl("pile a vide, rien n a ete fait");

@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:42:10 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/15 16:18:31 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/15 16:35:39 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			check_instruction(char *str, t_data **pilea, t_data **pileb)
 	else if (!(ft_strcmp(str, "ss\n")))
 		do_ss(*pilea, *pileb);
 	else if (!(ft_strcmp(str, "pa\n")))
-		ft_putendl("entree correct");
+		do_pa(pilea, pileb);
 	else if (!(ft_strcmp(str, "pb\n")))
 		do_pb(pilea, pileb);
 	else if (!(ft_strcmp(str, "ra\n")))
