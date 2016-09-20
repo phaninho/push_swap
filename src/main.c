@@ -6,15 +6,14 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:19:33 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/20 15:12:57 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/20 18:15:27 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		call_fctn(char **av, t_data *pilea, t_data *pileb, long *nb)
+void		call_fctn(t_data *pilea, t_data *pileb, long *nb)
 {
-	(void)av;
 	char	*str;
 
 	if (check_double(pilea->lima, nb))
@@ -48,7 +47,7 @@ int			main(int ac, char **av)
 	if (ac > 1 && (!check_av(av, nb, &pilea)))
 	{
 		pilea->lima = ac - 1;
-		call_fctn(av, pilea, pileb, nb);
+		call_fctn(pilea, pileb, nb);
 	}
 	else
 		ft_putendl_fd("Error", 2);

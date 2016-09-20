@@ -6,7 +6,7 @@
 #    By: stmartin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/04 14:21:39 by stmartin          #+#    #+#              #
-#    Updated: 2016/09/20 17:52:50 by stmartin         ###   ########.fr        #
+#    Updated: 2016/09/20 18:20:04 by stmartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC_PATH = ./include/ ./libft/
 LIB_PATH = ./libft/
 
 SRC_NAME = main.c parsing.c manip_pile.c list.c
-SRC_PUSH_NAME = main.c
+SRC_PUSH_NAME = main.c ../src/parsing.c ../src/manip_pile.c ../src/list.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_PUSH_NAME = $(SRC_PUSH_NAME:.c=.o)
