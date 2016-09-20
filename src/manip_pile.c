@@ -113,7 +113,7 @@ void		do_rra(t_data **pilea)
 	t_data		*last_node;
 	t_data		*tmp;
 
-	if (*pilea && (*pilea)->next->next)
+	if (*pilea && (*pilea)->next && (*pilea)->next->next)
 	{
 		tmp = *pilea;
 		while (tmp->next)
@@ -137,7 +137,7 @@ void		do_rrb(t_data **pileb)
 	t_data		*last_node;
 	t_data		*tmp;
 
-	if (*pileb && (*pileb)->next->next)
+	if (*pileb && (*pileb)->next && (*pileb)->next->next)
 	{
 		tmp = *pileb;
 		while (tmp->next)
