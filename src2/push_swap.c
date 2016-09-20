@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/20 17:58:14 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/20 19:02:01 by stmartin         ###   ########.fr       */
+/*   Created: 2016/09/20 19:02:15 by stmartin          #+#    #+#             */
+/*   Updated: 2016/09/20 19:04:37 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
 
-void		call_fctn(t_data *pilea, t_data *pileb, long *nb)
+void				push_swap(t_data *pilea, t_data *pileb)
 {
 	(void)pileb;
-	if (check_double(pilea->lima, nb))
-		return ;
-	else
-		push_swap(pilea, pileb);
-}
-
-int			main(int ac, char **av)
-{
-	long			*nb;
-	static t_data	*pilea;
-	static t_data	*pileb;
-
-	nb = (long *)malloc(sizeof(long) * (ac - 1));
-	if (ac > 1 && (!check_av(av, nb, &pilea)))
+	while (pilea)
 	{
-		pilea->lima = ac - 1;
-		call_fctn(pilea, pileb, nb);
+		ft_putnbr(pilea->nb);
+		ft_putchar('\n');
+		pilea = pilea->next;
 	}
-	else
-		ft_putendl_fd("Error", 2);
-	return (0);
 }

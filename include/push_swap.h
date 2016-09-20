@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:21:37 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/20 18:16:02 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/20 19:04:59 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void				do_rrr(t_data **pilea, t_data **pileb);
 t_data				*list_newnode(int nb);
 void				list_addend(t_data *newnode, t_data **full_list);
 void				check_nb_order(t_data *pilea, t_data *pileb);
+void				push_swap(t_data *pilea, t_data *pileb);
 
 #endif
