@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:19:33 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/15 15:59:30 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/20 13:10:28 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void		call_fctn(char **av, t_data *pilea, t_data *pileb, long *nb)
 	while (fgets(str, sizeof str, stdin))
 	{
 		if (str[0] == '\n' || check_instruction(str, &pilea, &pileb))
+		{
+			check_nb_order(pilea, pileb);
 			break;
+		}
 	}
-	ft_putstr("sortie du fgets\n");
 }
 
 int			main(int ac, char **av)
@@ -44,6 +46,6 @@ int			main(int ac, char **av)
 		call_fctn(av, pilea, pileb, nb);
 	}
 	else
-		ft_putendl("Need arguments, please enter numbers seperate by spaces");
+		ft_putendl_fd("Error", 2);
 	return (0);
 }

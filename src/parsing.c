@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:42:10 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/15 17:39:58 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/20 14:23:55 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,11 @@
 int			check_instruction(char *str, t_data **pilea, t_data **pileb)
 {
 	t_data *tmp;
-	t_data *tmpb;
 
 	tmp = *pilea;
-		ft_putstr("avant a:\n");
-	while (tmp)
-	{
-		ft_putnbr(tmp->nb);
-		tmp = tmp->next;
-		ft_putchar('\n');
-	}
-	tmpb = *pileb;
-		ft_putstr("avant b:\n");
-	while (tmpb)
-	{
-		ft_putnbr(tmpb->nb);
-		tmpb = tmpb->next;
-		ft_putchar('\n');
-	}
 	if (ft_strlen(str) > 4)
 	{
-		ft_putendl("Error");
+		ft_putendl_fd("Error", 2);
 		return (1);
 	}
 	else if (!(ft_strcmp(str, "sa\n")))
@@ -62,26 +46,9 @@ int			check_instruction(char *str, t_data **pilea, t_data **pileb)
 		do_rrr(pilea, pileb);
 	else
 	{
-		ft_putstr_fd("Error, mauvais entree\n", 2);
+		ft_putendl_fd("Error", 2);
 		return (1);
 	}
-	tmp = *pilea;
-		ft_putstr("apres a:\n");
-	while (tmp)
-	{
-		ft_putnbr(tmp->nb);
-		tmp = tmp->next;
-		ft_putchar('\n');
-	}
-	tmpb = *pileb;
-		ft_putstr("apresb:\n");
-	while (tmpb)
-	{
-		ft_putnbr(tmpb->nb);
-		tmpb = tmpb->next;
-		ft_putchar('\n');
-	}
-	ft_putendl("///////////////////////////////////////////");
 	return (0);
 }
 
@@ -98,7 +65,7 @@ int			check_double(int lim, long *nb)
 		{
 			if (nb[i] == nb[j])
 			{
-				ft_putendl("Error, doublons detected");
+				ft_putendl_fd("Error", 2);
 				return (1);
 			}
 			j++;
@@ -131,14 +98,14 @@ int			check_av(char **av, long *nb, t_data **pilea)
 				}
 				else
 				{
-					ft_putendl("Error, not digit detected");
+					ft_putendl_fd("Error", 2);
 					return (1);
 				}
 			}
 			nb[x - 1] = ft_atol(av[x]);
 			if (nb[x - 1] < INT_MIN || nb[x - 1] > INT_MAX)
 			{
-				ft_putendl("Error, int overflow");
+				ft_putendl_fd("Error", 2);
 				return (1);
 			}
 			x++;
@@ -154,6 +121,33 @@ int			check_av(char **av, long *nb, t_data **pilea)
 		return (0);
 	}
 	else
-		ft_putendl("Error");
+		ft_putendl_fd("Error", 2);
 	return (1);
+}
+
+void		check_nb_order(t_data *pilea, t_data *pileb)
+{
+	t_data		*tmp;
+	int			checker;
+
+	checker = 0;
+	if (pileb || !pilea)
+		ft_putendl("KO");
+	else
+	{
+		tmp = pilea;
+		while (tmp->next)
+		{
+			if (tmp->nb < tmp->next->nb)
+				tmp = tmp->next;
+			else
+			{
+				checker = 1;
+				ft_putendl("KO");
+				break;
+			}
+		}
+		if (!checker)
+			ft_putendl("OK");
+	}
 }

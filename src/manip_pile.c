@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:57:55 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/15 18:39:21 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/20 14:29:28 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void		do_sa(t_data *pilea)
 {
-	if (pilea)
+	if (pilea && pilea->next)
 		ft_swap(&pilea->nb, &pilea->next->nb);
 }
 
 void		do_sb(t_data *pileb)
 {
-	if (pileb)
+	if (pileb && pileb->next)
 		ft_swap(&pileb->nb, &pileb->next->nb);
 }
 
@@ -39,14 +39,12 @@ void		do_pb(t_data **pilea, t_data **pileb)
 	newelem = NULL;
 	if (!*pileb && *pilea)
 	{
-		ft_putendl("pileb == NULL pas dta////////////////");
 		newelem = list_newnode((*pilea)->nb);
 		*pileb = newelem;
 		*pilea = (*pilea)->next;
 	}
 	else if (*pilea && *pileb)
 	{
-		ft_putendl("milieu////////////");
 		newelem = list_newnode((*pilea)->nb);
 		newelem->next = tmp;
 		*pileb = newelem;
@@ -65,21 +63,19 @@ void		do_pa(t_data **pilea, t_data **pileb)
 	newelem = NULL;
 	if (!*pilea && *pileb)
 	{
-		ft_putendl("pilea == NULL pas dta////////////////");
 		newelem = list_newnode((*pileb)->nb);
 		*pilea = newelem;
 		*pileb = (*pileb)->next;
 	}
 	else if (*pilea && *pileb)
 	{
-		ft_putendl("milieu////////////");
 		newelem = list_newnode((*pileb)->nb);
 		newelem->next = tmp;
 		*pilea = newelem;
 		*pileb = (*pileb)->next;
 	}
 	else
-		ft_putendl("pile a vide, rien n a ete fait");
+		ft_putendl("pile b vide, rien n a ete fait");
 }
 
 void		do_ra(t_data **pilea)
