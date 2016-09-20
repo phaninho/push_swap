@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:42:10 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/20 14:23:55 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/20 14:50:21 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,7 @@ int			check_av(char **av, long *nb, t_data **pilea)
 			}
 			nb[x - 1] = ft_atol(av[x]);
 			if (nb[x - 1] < INT_MIN || nb[x - 1] > INT_MAX)
-			{
-				ft_putendl_fd("Error", 2);
 				return (1);
-			}
 			x++;
 		}
 		lim = x - 1;
@@ -121,8 +118,7 @@ int			check_av(char **av, long *nb, t_data **pilea)
 		return (0);
 	}
 	else
-		ft_putendl_fd("Error", 2);
-	return (1);
+		return (1);
 }
 
 void		check_nb_order(t_data *pilea, t_data *pileb)
