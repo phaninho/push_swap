@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:42:10 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/20 14:50:21 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/20 14:51:41 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int			check_instruction(char *str, t_data **pilea, t_data **pileb)
 {
-	t_data *tmp;
-
-	tmp = *pilea;
 	if (ft_strlen(str) > 4)
 	{
 		ft_putendl_fd("Error", 2);
