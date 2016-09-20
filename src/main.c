@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:19:33 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/20 13:10:28 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/20 15:12:57 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,14 @@ void		call_fctn(char **av, t_data *pilea, t_data *pileb, long *nb)
 	ft_putendl("entrer une instruction");
 	while (fgets(str, sizeof str, stdin))
 	{
-		if (str[0] == '\n' || check_instruction(str, &pilea, &pileb))
+		if (str[0] == '\n')
 		{
 			check_nb_order(pilea, pileb);
+			break;
+		}
+		else if (check_instruction(str, &pilea, &pileb))
+		{
+			ft_putendl_fd("Error", 2);
 			break;
 		}
 	}

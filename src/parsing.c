@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:42:10 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/20 14:51:41 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/20 15:16:10 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ int			check_instruction(char *str, t_data **pilea, t_data **pileb)
 	else if (!(ft_strcmp(str, "rrr\n")))
 		do_rrr(pilea, pileb);
 	else
-	{
-		ft_putendl_fd("Error", 2);
 		return (1);
-	}
 	return (0);
 }
 
@@ -94,10 +91,7 @@ int			check_av(char **av, long *nb, t_data **pilea)
 						break;
 				}
 				else
-				{
-					ft_putendl_fd("Error", 2);
 					return (1);
-				}
 			}
 			nb[x - 1] = ft_atol(av[x]);
 			if (nb[x - 1] < INT_MIN || nb[x - 1] > INT_MAX)
@@ -114,8 +108,7 @@ int			check_av(char **av, long *nb, t_data **pilea)
 		}
 		return (0);
 	}
-	else
-		return (1);
+	return (1);
 }
 
 void		check_nb_order(t_data *pilea, t_data *pileb)
