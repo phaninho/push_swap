@@ -18,7 +18,7 @@ INC_PATH = ./include/ ./libft/
 LIB_PATH = ./libft/
 
 SRC_NAME = main.c parsing.c manip_pile.c list.c
-SRC_PUSH_NAME = main.c ../src/parsing.c ../src/manip_pile.c ../src/list.c \
+SRC_PUSH_NAME = main.c parsing.c manip_pile.c list.c \
 				push_swap.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
@@ -51,7 +51,6 @@ $(NAME_PUSH): $(OBJ_PUSH)
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
-
 $(OBJ_PUSH_PATH)%.o: $(SRC_PUSH_PATH)%.c
 	@mkdir -p $(OBJ_PUSH_PATH)
 	$(CC) $(CFLAGS) $(INC) -o $@ -c $<

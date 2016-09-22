@@ -11,39 +11,38 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void		move_nb(t_data **pilea, t_data **pileb)
+void		move_nb(t_data **pilea, t_data **pileb, t_data *last)
 {
-	if (*pilea && (*pilea)->next)
+	t_data	*tmp;
+
+	tmp = *pilea;
+	while (tmp)
 	{
-		if ((*pilea)->nb > (*pilea)->next->nb)
-			do_sa(*pilea);
+		if (tmp->next && tmp->nb > tmp->next->nb)
+			do_sa(tmp);
+		else if (tmp->next && tmp->nb > last->nb)
+			do_ra(&tmp);
+		tmp = tmp->next;
 	}
+	
 	(void)pileb;
 }
 
 void		push_swap(t_data *pilea, t_data *pileb)
 {
 	t_data		*tmp;
-
+	t_data		*last;
 	tmp = pilea;
 		ft_putendl("liste des nombres :");
 	while (tmp)
 	{
 		ft_putnbr(tmp->nb);
 		ft_putchar('\n');
+		if (!(tmp->next))
+			last = tmp;
 		tmp = tmp->next;
 	}
-	tmp = pilea;
-	while (tmp)
-	{
-		if (tmp->next && tmp->nb > tmp->next->nb)
-		{
-			move_nb(&pilea, &pileb);
-			tmp = pilea;
-		}
-		else
-			tmp = tmp->next;
-	}
+	move_nb(&pilea, &pileb, last);
 	tmp = pilea;
 		ft_putendl("apres traitement :");
 	while (tmp)
