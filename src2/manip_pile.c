@@ -16,18 +16,21 @@ void		do_sa(t_data *pilea)
 {
 	if (pilea && pilea->next)
 		ft_swap(&pilea->nb, &pilea->next->nb);
+	ft_putendl("sa");
 }
 
 void		do_sb(t_data *pileb)
 {
 	if (pileb && pileb->next)
 		ft_swap(&pileb->nb, &pileb->next->nb);
+	ft_putendl("sb");
 }
 
 void		do_ss(t_data *pilea, t_data *pileb)
 {
 	do_sa(pilea);
 	do_sb(pileb);
+	ft_putendl("ss");
 }
 
 void		do_pb(t_data **pilea, t_data **pileb)
@@ -52,6 +55,7 @@ void		do_pb(t_data **pilea, t_data **pileb)
 	}
 	else
 		ft_putendl("pile a vide, rien n a ete fait");
+	ft_putendl("pb");
 }
 
 void		do_pa(t_data **pilea, t_data **pileb)
@@ -76,6 +80,7 @@ void		do_pa(t_data **pilea, t_data **pileb)
 	}
 	else
 		ft_putendl("pile b vide, rien n a ete fait");
+	ft_putendl("pa");
 }
 
 void		do_ra(t_data **pilea)
@@ -88,6 +93,7 @@ void		do_ra(t_data **pilea)
 		*pilea = (*pilea)->next;
 		list_addend(newelem, pilea);
 	}
+	ft_putendl("ra");
 }
 
 void		do_rb(t_data **pileb)
@@ -100,12 +106,14 @@ void		do_rb(t_data **pileb)
 		*pileb = (*pileb)->next;
 		list_addend(newelem, pileb);
 	}
+	ft_putendl("rb");
 }
 
 void		do_rr(t_data **pilea, t_data **pileb)
 {
 	do_ra(pilea);
 	do_rb(pileb);
+	ft_putendl("rr");
 }
 
 void		do_rra(t_data **pilea)
@@ -130,6 +138,7 @@ void		do_rra(t_data **pilea)
 	}
 	else
 		do_sa(*pilea);
+	ft_putendl("rra");
 }
 
 void		do_rrb(t_data **pileb)
@@ -154,10 +163,12 @@ void		do_rrb(t_data **pileb)
 	}
 	else
 		do_sb(*pileb);
+	ft_putendl("rrb");
 }
 
 void		do_rrr(t_data **pilea, t_data **pileb)
 {
 	do_rra(pilea);
 	do_rrb(pileb);
+	ft_putendl("rrr");
 }
