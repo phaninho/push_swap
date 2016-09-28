@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int			check_piles(t_data *pilea, t_data *pileb)
+int			check_piles(t_data *pilea, t_data *pileb, t_data **last_b)
 {
 	t_data		*tmp;
 	int			i;
@@ -42,6 +42,9 @@ int			check_piles(t_data *pilea, t_data *pileb)
 			if (!tmp)
 				i = i + 2;
 		}
+		while (tmp->next)
+			tmp = tmp->next;
+		*last_b = tmp;
 		if (i == 3)
 			return (0);
 		else if (i == 1)
@@ -71,12 +74,13 @@ int			check_list_order(t_data *pila, t_data *pileb)
 
 int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 {
-	int			ret_piles;
+	int				ret_piles;
+	static t_data	*last_b;
 
 	if (!check_list_order(*pilea, *pileb))
 		return (1);
 	if (*pilea || *pileb)
-		ret_piles = check_piles(*pilea, *pileb);
+		ret_piles = check_piles(*pilea, *pileb, &last_b);
 	if (!ret_piles)
 		ft_putendl("A croissant, B decroissant");
 	else if (ret_piles == 1)
@@ -89,13 +93,22 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 		ft_putendl("A mal trie, B decroissant");
 	else if (ret_piles == 5)
 		ft_putendl("A et B mal trie");
-	if (*pilea && (*pilea)->next && (*pilea)->nb > (*pilea)->next->nb)
+	if (*pilea && *pileb && (*pilea)->next && (*pileb)->next && (*pilea)->nb > \
+	(*pilea)->next->nb && (*pileb)->nb < (*pileb)->next->nb)
+		do_ss(*pilea, *pileb);
+	else if (last_b && *pileb && last_b->nb > (*pileb)->nb)
+		do_rb(pileb);
+	else if (*pilea && (*pilea)->next && (*pilea)->nb > (*pilea)->next->nb)
 		do_sa(*pilea);
-	else if (*pilea && (*pilea)->next && (*pilea)->nb < (*pilea)->next->nb)
+	else if (*pileb && (*pileb)->next && (*pileb)->nb < (*pileb)->next->nb)
+		do_sb(*pileb);
+	else if (*pileb && (*pileb)->nb < (*pilea)->nb)
+		do_pa(pilea, pileb);
+	else if ((*pilea && *pileb && (*pilea)->next && (*pilea)->nb < (*pilea)->next->nb && (*pilea)->nb < (*pileb)->nb) || (*pilea && (*pilea)->next && (*pilea)->nb < (*pilea)->next->nb))
 		do_pb(pilea, pileb);
 	else if (pileb && last->nb < (*pilea)->nb && last->nb > (*pileb)->nb)
 		do_rra(pilea);
-	else if (last->nb < (*pilea)->nb)
+	else if (last && *pilea && last->nb < (*pilea)->nb)
 		do_ra(pilea);
 	return (0);
 }

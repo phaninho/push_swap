@@ -14,6 +14,7 @@
 
 void		do_sa(t_data *pilea)
 {
+		ft_putendl("entre//////////////////");
 	if (pilea && pilea->next)
 		ft_swap(&pilea->nb, &pilea->next->nb);
 	ft_putendl("sa");
