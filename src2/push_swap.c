@@ -89,9 +89,9 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 		ft_putendl("A mal trie, B decroissant");
 	else if (ret_piles == 5)
 		ft_putendl("A et B mal trie");
-	if (*pilea && (*pilea)->nb > (*pilea)->next->nb)
+	if (*pilea && (*pilea)->next && (*pilea)->nb > (*pilea)->next->nb)
 		do_sa(*pilea);
-	else if (*pilea && (*pilea)->nb < (*pilea)->next->nb)
+	else if (*pilea && (*pilea)->next && (*pilea)->nb < (*pilea)->next->nb)
 		do_pb(pilea, pileb);
 	else if (pileb && last->nb < (*pilea)->nb && last->nb > (*pileb)->nb)
 		do_rra(pilea);
