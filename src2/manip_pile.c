@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:57:55 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/20 14:29:28 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/09/29 17:13:45 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void		do_sa(t_data *pilea)
 {
-		ft_putendl("entre//////////////////");
 	if (pilea && pilea->next)
 		ft_swap(&pilea->nb, &pilea->next->nb);
 	ft_putendl("sa");
