@@ -58,33 +58,78 @@ int			check_piles(t_data *pilea, t_data *pileb, t_data **last_b)
 int			check_lista_order(t_data *pil, t_data **last)
 {
 	t_data		*pilea;
+	int			i;
 
+	i = 0;
 	pilea = pil;
 	while (pilea && pilea->next)
 	{
 		if (pilea->nb < pilea->next->nb)
 			pilea = pilea->next;
 		else
-			return (1);
+		{
+			i++;
+			pilea = pilea->next;
+		}
 	}
 	*last = pilea;
+	if (i)
+		return (1);
 	return (0);
 }
 
 int			check_listb_order(t_data *pil, t_data **last)
 {
 	t_data		*pilea;
+	int			i;
 
+	i = 0;
 	pilea = pil;
 	while (pilea && pilea->next)
 	{
 		if (pilea->nb > pilea->next->nb)
 			pilea = pilea->next;
 		else
-			return (1);
+		{
+			i++;
+			pilea = pilea->next;
+		}
 	}
 	*last = pilea;
+	if (i)
+		return (1);
 	return (0);
+}
+
+void		move_pilea(t_data **pilea, t_data **pileb, t_data *last)
+{
+	ft_putstr("nb : ");
+	ft_putnbr((*pilea)->nb);
+	ft_putstr("last\n");
+	ft_putnbr(last->nb);
+	if ((*pilea)->nb > last->nb && last->nb < (*pilea)->next->nb)
+		do_rra(pilea);
+	else if ((*pilea)->nb > (*pilea)->next->nb && (*pilea)->nb > (*pilea)->next->nb)
+		do_ra(pilea);
+	else if ((*pilea)->nb > (*pilea)->next->nb && (*pilea)->nb > last->nb)
+		do_sa(*pilea);
+	else if ((*pilea)->nb < (*pilea)->next->nb && (*pilea)->nb < last->nb)
+		do_pb(pilea, pileb);
+	else if ((*pilea)->nb > last->nb)
+		do_rra(pilea);
+}
+
+void		move_pileb(t_data **pilea, t_data **pileb, t_data *lasta, t_data *last_b)
+{
+	if (*pilea && (*pileb)->nb > lasta->nb && (*pileb)->nb > (*pilea)->nb)
+	{
+		do_pa(pilea, pileb);
+		do_ra(pilea);
+	}
+	else if (last_b && last_b->nb > (*pileb)->nb)
+		do_rb(pileb);
+	else if ((*pileb)->nb < (*pileb)->next->nb)
+		do_sb(*pileb);
 }
 
 int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
@@ -113,34 +158,50 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 		ft_putendl("A mal trie, B decroissant");
 	else if (ret_pila == 1 && ret_pilb == 1)
 		ft_putendl("A et B mal trie");
+		ft_putstr("pila : ");
+		ft_putnbr((*pilea)->nb);
+		ft_putchar('\n');
+		ft_putstr("pila next: ");
+		if ((*pilea)->next)
+		ft_putnbr((*pilea)->next->nb);
+		ft_putchar('\n');
+		ft_putstr("last : ");
+		ft_putnbr(last->nb);
+		ft_putchar('\n');
 	if (!ret_pila && !ret_pilb)
 		do_pa(pilea, pileb);
-	else if (*pilea && *pileb && (*pilea)->next && (*pileb)->next && (*pilea)->nb > \
-	(*pilea)->next->nb && (*pileb)->nb < (*pileb)->next->nb)
+	if (*pilea && (*pilea)->next && *pileb && (*pileb)->next && ((*pilea)->nb > (*pilea)->next->nb && (*pileb)->nb < (*pileb)->next->nb))
 		do_ss(*pilea, *pileb);
-	else if (*pileb && (*pileb)->next && (*pileb)->nb < (*pileb)->next->nb)
-		do_sb(*pileb);
-	else if (*pilea && (*pilea)->next && last && (*pilea)->nb < (*pilea)->next->nb && (*pilea)->next->nb > last->nb)
+	if (ret_pilb == 1 && *pileb && (*pileb)->next)
+		move_pileb(pilea, pileb, last, last_b);
+	if (ret_pila == 1 && *pilea && (*pilea)->next)
+		move_pilea(pilea, pileb, last);
+	if ( !ret_pila && !ret_pilb && (*pileb))
 	{
-		do_sa(*pilea);
-		do_ra(pilea);
-	}
-	else if (last_b && *pileb && last_b->nb > (*pileb)->nb)
-		do_rb(pileb);
-	else if (*pilea && (*pilea)->next && (*pilea)->nb > (*pilea)->next->nb)
-		do_sa(*pilea);
-	else if (ret_pila && ret_pilb && *pileb && (*pileb)->nb < (*pilea)->nb)
 		do_pa(pilea, pileb);
+		ft_putstr("laaaaaaaaaaaaaaaaaaaaaaaa\n");
+	}
+	t_data	*tmp = (*pilea);
+	t_data	*tmp2 = (*pileb);
+	ft_putstr("A   B\n");
+	while (tmp || tmp2)
+	{
+		if (tmp)
+		{
+			ft_putnbr(tmp->nb);
+			tmp = tmp->next;
+		}
+		else
+			ft_putchar(' ');
+		ft_putchar(' ');
+		if (tmp2)
+		{
+			ft_putnbr(tmp2->nb);
+			tmp2 = tmp2->next;
+		}
+		ft_putchar('\n');
+	}
 
-	else if (ret_pila == 1 && *pilea && (*pilea)->next && (*pilea)->nb < (*pilea)->next->nb && (*pilea)->nb < last->nb)
-		do_pb(pilea, pileb);
-	else if (ret_pila == 1 && ret_pilb == 1 && *pilea && *pileb && (*pilea)->nb < (*pilea)->next->nb && (*pilea)->nb < last->nb && (*pilea)->nb > (*pileb)->nb)
-		do_pb(pilea, pileb);
-//	else if ((*pilea && *pileb && (*pilea)->next && (*pilea)->nb < (*pilea)->next->nb && (*pilea)->nb < (*pileb)->nb) || (*pilea && (*pilea)->next && (*pilea)->nb < (*pilea)->next->nb))
-	else if (pileb && last->nb < (*pilea)->nb && last->nb > (*pileb)->nb)
-		do_rra(pilea);
-	else if (last && *pilea && last->nb < (*pilea)->nb)
-		do_ra(pilea);
 	sleep(1);
 	return (0);
 }
