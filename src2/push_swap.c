@@ -176,7 +176,7 @@ void		move_pileb(t_data **pilea, t_data **pileb, t_data *lasta, t_data *last_b)
 	else if (*pileb && (*pileb)->next && (*pilea)->nb < (*pilea)->next->nb && (*pilea)->nb < lasta->nb && (*pilea)->nb < (*pileb)->nb && (*pilea)->nb < (*pileb)->next->nb)
 	{
 		do_ra(pilea);
-	//	while (*pileb && lasta->nb < (*pileb)->nb && (*pileb)->nb > (*pilea)->nb)
+		while ((*pilea)->nb > (*pileb)->nb)
 			do_pa(pilea, pileb);
 		do_rra(pilea);
 	}
