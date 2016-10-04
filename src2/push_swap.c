@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 19:02:15 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/29 18:04:28 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/10/04 14:59:25 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -115,6 +115,8 @@ void		move_pilea(t_data **pilea, t_data **pileb, t_data *last, t_data *last_b)
 		do_ra(pilea);
 	else if ((*pilea)->nb > (*pilea)->next->nb && (*pilea)->next->next && (*pilea)->nb < (*pilea)->next->next->nb)
 		do_sa(*pilea);
+	else if ((*pilea)->nb > last->nb && (*pilea)->nb < (*pilea)->next->nb)
+		do_rra(pilea);
 	else if ((*pilea)->nb < last->nb && last->nb < (*pilea)->next->nb)
 	{
 		do_rra(pilea);
@@ -122,8 +124,6 @@ void		move_pilea(t_data **pilea, t_data **pileb, t_data *last, t_data *last_b)
 	}
 	else if ((*pilea)->nb < (*pilea)->next->nb && (*pilea)->nb < last->nb)
 		do_pb(pilea, pileb);
-	else if ((*pilea)->nb > last->nb)
-		do_rra(pilea);
 	else if ((*pilea)->nb > (*pilea)->next->nb && (*pilea)->next->nb < (*pilea)->next->next->nb)
 		do_sa(*pilea);
 	else if (last_b && *pileb && (*pileb)->next && (*pilea)->nb < last_b->nb && (*pilea)->nb < (*pilea)->next->nb && (*pilea)->nb < (*pileb)->nb && (*pilea)->nb < (*pileb)->next->nb)
@@ -131,7 +131,14 @@ void		move_pilea(t_data **pilea, t_data **pileb, t_data *last, t_data *last_b)
 		do_pb(pilea, pileb);
 		do_rrb(pileb);
 	}
-	
+	// nouveaux ajouts
+	else if ((*pilea)->nb > (*pilea)->next->nb && (*pilea)->nb > (*pileb)->nb && (*pilea)->nb && (*pilea)->nb > (*pileb)->next->nb)
+		do_pb(pilea, pileb);
+	else if (last_b->nb < (*pilea)->nb && last_b->nb < (*pileb)->nb && (*pilea)->nb > (*pileb)->nb)
+	{
+		do_rrb(pileb);
+		do_pa(pilea, pileb);
+	}
 }
 
 void		move_pileb(t_data **pilea, t_data **pileb, t_data *lasta, t_data *last_b)
@@ -244,13 +251,10 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 		do_sb(*pilea);
 	}
 	if ( !ret_pila && !ret_pilb && (*pileb))
-	{
 		do_pa(pilea, pileb);
-	//	ft_putstr("laaaaaaaaaaaaaaaaaaaaaaaa\n");
-	}/*
 	t_data	*tmp = (*pilea);
 	t_data	*tmp2 = (*pileb);
-	ft_putstr("A   B\n");
+	ft_putstr("\nA   B\n");
 	while (tmp || tmp2)
 	{
 		if (tmp)
@@ -267,9 +271,9 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 			tmp2 = tmp2->next;
 		}
 		ft_putchar('\n');
-	}*/
+	}
 
-	sleep(1);
+//	sleep(1);
 	return (0);
 }
 
