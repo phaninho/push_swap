@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 19:02:15 by stmartin          #+#    #+#             */
-/*   Updated: 2016/10/05 15:35:08 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/10/05 18:08:24 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -126,7 +126,9 @@ void		move_pilea(t_data **pilea, t_data **pileb, t_data *last, t_data *last_b)
 		do_pb(pilea, pileb);
 	else if ((*pilea)->nb > (*pilea)->next->nb && (*pilea)->next->nb < (*pilea)->next->next->nb)
 		do_sa(*pilea);
-	else if (last_b && *pileb && (*pileb)->next && (*pilea)->nb < last_b->nb && (*pilea)->nb < (*pilea)->next->nb && (*pilea)->nb < (*pileb)->nb && (*pilea)->nb < (*pileb)->next->nb)
+	else if (last_b && *pileb && (*pileb)->next && (*pilea)->nb < last_b->nb
+				&& (*pilea)->nb < (*pilea)->next->nb
+				&& (*pilea)->nb < (*pileb)->nb && (*pilea)->nb < (*pileb)->next->nb)
 	{
 		do_pb(pilea, pileb);
 		do_rrb(pileb);
@@ -258,7 +260,7 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 	}
 	if ( !ret_pila && !ret_pilb && (*pileb))
 		do_pa(pilea, pileb);
-	t_data	*tmp = (*pilea);
+	/*t_data	*tmp = (*pilea);
 	t_data	*tmp2 = (*pileb);
 	ft_putstr("\nA   B\n");
 	while (tmp || tmp2)
@@ -277,7 +279,7 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 			tmp2 = tmp2->next;
 		}
 		ft_putchar('\n');
-	}
+	}*/
 
 //	sleep(1);
 	return (0);

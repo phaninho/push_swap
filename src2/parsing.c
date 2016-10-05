@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:42:10 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/20 15:16:10 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/10/05 18:19:20 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,16 @@ int			check_av(char **av, long *nb, t_data **pilea)
 	int		y;
 	int		lim;
 	t_data	*newelem;
-
 	x = 1;
+	y = 0;
+	while (av[x][y])
+	{
+		ft_putchar(av[x][y]);
+		y++;
+	}
+	x = 1;
+
+
 	if (av && av[x])
 	{
 		while (av && av[x])
