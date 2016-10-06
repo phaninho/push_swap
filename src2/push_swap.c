@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 19:02:15 by stmartin          #+#    #+#             */
-/*   Updated: 2016/10/05 18:08:24 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/10/06 21:01:34 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -253,7 +253,7 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 		do_pa(pilea, pileb);
 	if (ret_pila == 1 && *pilea && (*pilea)->next)
 		move_pilea(pilea, pileb, last, last_b);
-	else if ((*pilea)->nb < (*pileb)->nb && (*pilea)->nb < last->nb && (*pilea)->nb > (*pileb)->next->nb)
+	else if (*pilea && *pileb && last && (*pileb)->next && (*pilea)->nb < (*pileb)->nb && (*pilea)->nb < last->nb && (*pilea)->nb > (*pileb)->next->nb)
 	{
 		do_pb(pilea, pileb);
 		do_sb(*pilea);
@@ -293,34 +293,29 @@ void		push_swap(t_data *pilea, t_data *pileb)
 
 	mv_ret = 0;
 	tmp = pilea;
-		ft_putendl("liste des nombres :");
+//		ft_putendl("liste des nombres :");
 	while (tmp)
 	{
-		ft_putnbr(tmp->nb);
-		ft_putchar('\n');
+//		ft_putnbr(tmp->nb);
+//		ft_putchar('\n');
 		if (!(tmp->next))
 			last = tmp;
 		tmp = tmp->next;
 	}
-	int i;
-	i = 1;
 	while (!mv_ret)
 	{
-	ft_putnbr(i);
-	ft_putchar(' ');
-	i++;
 		mv_ret = move_nb(&pilea, &pileb, last);
 		if (mv_ret == 1)
 			ft_putendl("OK");
 		else if (mv_ret == 2)
 			ft_putendl("KO");
 	}
-	tmp = pilea;
+/*	tmp = pilea;
 		ft_putendl("pile A apres traitement :");
 	while (pilea)
 	{
 		ft_putnbr(pilea->nb);
 		ft_putchar('\n');
 		pilea = pilea->next;
-	}
+	}*/
 }
