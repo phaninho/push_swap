@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:42:10 by stmartin          #+#    #+#             */
-/*   Updated: 2016/10/06 20:51:36 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/10/20 18:45:22 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,19 @@ int			check_double(int lim, long *nb)
 	return (0);
 }
 
-int			check_av(char **av, long *nb, t_data **pilea)
+int			check_av(char **av, long *nb, t_data **pilea, int x)
 {
-	int		x;
 	int		y;
 	int		lim;
 	t_data	*newelem;
+	int		tmp;
 
-	x = 1;
+	tmp = 0;
 	if (av && av[x])
 	{
 		while (av && av[x])
 		{
+			ft_putstr(av[x]);
 			y = 0;
 			while (av[x][y] || av[x][y] != ' ' || av[x][y] != '\n')
 			{
@@ -93,12 +94,15 @@ int			check_av(char **av, long *nb, t_data **pilea)
 				else
 					return (1);
 			}
-			nb[x - 1] = ft_atol(av[x]);
-			if (nb[x - 1] < INT_MIN || nb[x - 1] > INT_MAX)
+
+		//	ft_putstr(av[tmp + 1]);
+			nb[tmp] = ft_atol(av[x]);
+			if (nb[x] < INT_MIN || nb[x] > INT_MAX)
 				return (1);
 			x++;
+			tmp++;
 		}
-		lim = x - 1;
+		lim = tmp;
 		x = 0;
 		while (x < lim)
 		{
@@ -109,31 +113,4 @@ int			check_av(char **av, long *nb, t_data **pilea)
 		return (0);
 	}
 	return (1);
-}
-
-void		check_nb_order(t_data *pilea, t_data *pileb)
-{
-	t_data		*tmp;
-	int			checker;
-
-	checker = 0;
-	if (pileb || !pilea)
-		ft_putendl("KO");
-	else
-	{
-		tmp = pilea;
-		while (tmp->next)
-		{
-			if (tmp->nb < tmp->next->nb)
-				tmp = tmp->next;
-			else
-			{
-				checker = 1;
-				ft_putendl("KO");
-				break;
-			}
-		}
-		if (!checker)
-			ft_putendl("OK");
-	}
 }

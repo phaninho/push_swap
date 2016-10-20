@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 19:02:15 by stmartin          #+#    #+#             */
-/*   Updated: 2016/10/06 21:01:34 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/10/20 18:30:37 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -221,7 +221,40 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 //		ft_putendl("A croissant, B decroissant");
 	if (!ret_pila && ret_pilb == -1)
 		return (1);
-	/*else if (ret_pila == -1)
+	
+	
+	
+	
+	t_data	*tmp = (*pilea);
+	t_data	*tmp2 = (*pileb);
+	ft_putstr("\nA   B\n");
+	while (tmp || tmp2)
+	{
+		if (tmp)
+		{
+			ft_putnbr(tmp->nb);
+			tmp = tmp->next;
+		}
+		else
+			ft_putchar(' ');
+		ft_putchar(' ');
+		if (tmp2)
+		{
+			ft_putnbr(tmp2->nb);
+			tmp2 = tmp2->next;
+		}
+		ft_putchar('\n');
+	}
+
+
+
+
+
+
+
+
+
+/*else if (ret_pila == -1)
 		ft_putendl("A vide");
 	else if (ret_pilb == -1)
 		ft_putendl("B vide");
@@ -260,27 +293,8 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 	}
 	if ( !ret_pila && !ret_pilb && (*pileb))
 		do_pa(pilea, pileb);
-	/*t_data	*tmp = (*pilea);
-	t_data	*tmp2 = (*pileb);
-	ft_putstr("\nA   B\n");
-	while (tmp || tmp2)
-	{
-		if (tmp)
-		{
-			ft_putnbr(tmp->nb);
-			tmp = tmp->next;
-		}
-		else
-			ft_putchar(' ');
-		ft_putchar(' ');
-		if (tmp2)
-		{
-			ft_putnbr(tmp2->nb);
-			tmp2 = tmp2->next;
-		}
-		ft_putchar('\n');
-	}*/
-
+	
+	
 //	sleep(1);
 	return (0);
 }
@@ -296,20 +310,12 @@ void		push_swap(t_data *pilea, t_data *pileb)
 //		ft_putendl("liste des nombres :");
 	while (tmp)
 	{
-//		ft_putnbr(tmp->nb);
-//		ft_putchar('\n');
 		if (!(tmp->next))
 			last = tmp;
 		tmp = tmp->next;
 	}
 	while (!mv_ret)
-	{
 		mv_ret = move_nb(&pilea, &pileb, last);
-		if (mv_ret == 1)
-			ft_putendl("OK");
-		else if (mv_ret == 2)
-			ft_putendl("KO");
-	}
 /*	tmp = pilea;
 		ft_putendl("pile A apres traitement :");
 	while (pilea)

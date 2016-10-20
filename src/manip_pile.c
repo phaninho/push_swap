@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:57:55 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/20 14:29:28 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/10/07 15:06:24 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ void		do_pa(t_data **pilea, t_data **pileb)
 		*pilea = newelem;
 		*pileb = (*pileb)->next;
 	}
-	else
-		ft_putendl("pile b vide, rien n a ete fait");
 }
 
 void		do_ra(t_data **pilea)
