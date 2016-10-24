@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 19:02:15 by stmartin          #+#    #+#             */
-/*   Updated: 2016/10/24 15:51:55 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/10/24 17:23:59 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -107,7 +107,7 @@ void		move_pilea(t_data **pilea, t_data **pileb, t_data *last, t_data *last_b)
 	check_listb_order(pileb, &last_b);
 
 	if ((*pilea)->nb > last->nb && last->nb < (*pilea)->next->nb)
-		do_rra(pilea);
+		do_rra(pilea); 
 	else if ((*pilea)->nb > (*pilea)->next->nb && (*pilea)->nb > last->nb)
 		do_ra(pilea);
 	else if ((*pilea)->nb > (*pilea)->next->nb && (*pilea)->next->next && (*pilea)->nb < (*pilea)->next->next->nb)
@@ -149,14 +149,14 @@ void		move_pileb(t_data **pilea, t_data **pileb, t_data *lasta, t_data *last_b)
 {
 	check_lista_order(pilea, &lasta);
 	check_listb_order(pileb, &last_b);
-	if ((*pilea)->next && (*pileb) && (*pileb)->next && (*pilea)->nb > (*pilea)->next->nb && (*pilea)->next->nb < (*pileb)->nb && (*pileb)->nb > (*pileb)->next->nb)
+/*	if ((*pilea)->next && (*pileb) && (*pileb)->next && (*pilea)->nb > (*pilea)->next->nb && (*pilea)->next->nb < (*pileb)->nb && (*pileb)->nb > (*pileb)->next->nb)
 	{
 		do_rr(pilea, pileb);
 		while ((*pilea)->nb < (*pileb)->nb)
 			do_pb(pilea, pileb);
-	//	do_rrr(pilea, pileb);
+		do_rrr(pilea, pileb);
 	}
-	else if (*pilea && (*pileb)->nb > lasta->nb && (*pileb)->nb > (*pilea)->nb)
+	else*/ if (*pilea && (*pileb)->nb > lasta->nb && (*pileb)->nb > (*pilea)->nb)
 	{
 		do_pa(pilea, pileb);
 		do_ra(pilea);
