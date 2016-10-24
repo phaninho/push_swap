@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 19:02:15 by stmartin          #+#    #+#             */
-/*   Updated: 2016/10/20 18:30:37 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/10/24 12:12:40 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -105,10 +105,7 @@ void		move_pilea(t_data **pilea, t_data **pileb, t_data *last, t_data *last_b)
 {
 	int i = check_lista_order(pilea, &last);
 	(void)i;
-//	ft_putstr("nb : ");
-//	ft_putnbr((*pilea)->nb);
-//	ft_putstr("last\n");
-//	ft_putnbr(last->nb);
+
 	if ((*pilea)->nb > last->nb && last->nb < (*pilea)->next->nb)
 		do_rra(pilea);
 	else if ((*pilea)->nb > (*pilea)->next->nb && (*pilea)->nb > last->nb)
@@ -217,14 +214,12 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 		ret_pila = check_lista_order(pilea, &last);
 	if (*pileb)
 		ret_pilb = check_listb_order(pileb, &last_b);
-//	if (!ret_pila && !ret_pilb)
-//		ft_putendl("A croissant, B decroissant");
 	if (!ret_pila && ret_pilb == -1)
 		return (1);
 	
 	
 	
-	
+/*	
 	t_data	*tmp = (*pilea);
 	t_data	*tmp2 = (*pileb);
 	ft_putstr("\nA   B\n");
@@ -245,35 +240,7 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 		}
 		ft_putchar('\n');
 	}
-
-
-
-
-
-
-
-
-
-/*else if (ret_pila == -1)
-		ft_putendl("A vide");
-	else if (ret_pilb == -1)
-		ft_putendl("B vide");
-	else if (!ret_pila && ret_pilb == 1)
-		ft_putendl("A croissant, B mal trie");
-	else if (!ret_pilb && ret_pila == 1)
-		ft_putendl("A mal trie, B decroissant");
-	else if (ret_pila == 1 && ret_pilb == 1)
-	ft_putendl("A et B mal trie");
-		ft_putstr("pila : ");
-		ft_putnbr((*pilea)->nb);
-		ft_putchar('\n');
-		ft_putstr("pila next: ");
-		if ((*pilea)->next)
-		ft_putnbr((*pilea)->next->nb);
-		ft_putchar('\n');
-		ft_putstr("last : ");
-		ft_putnbr(last->nb);
-		ft_putchar('\n');*/
+*/
 	if (!ret_pila && !ret_pilb)
 		do_pa(pilea, pileb);
 	if (*pilea && (*pilea)->next && *pileb && (*pileb)->next && ((*pilea)->nb > (*pilea)->next->nb && (*pileb)->nb < (*pileb)->next->nb))
@@ -293,9 +260,6 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 	}
 	if ( !ret_pila && !ret_pilb && (*pileb))
 		do_pa(pilea, pileb);
-	
-	
-//	sleep(1);
 	return (0);
 }
 
@@ -307,7 +271,6 @@ void		push_swap(t_data *pilea, t_data *pileb)
 
 	mv_ret = 0;
 	tmp = pilea;
-//		ft_putendl("liste des nombres :");
 	while (tmp)
 	{
 		if (!(tmp->next))
@@ -316,12 +279,4 @@ void		push_swap(t_data *pilea, t_data *pileb)
 	}
 	while (!mv_ret)
 		mv_ret = move_nb(&pilea, &pileb, last);
-/*	tmp = pilea;
-		ft_putendl("pile A apres traitement :");
-	while (pilea)
-	{
-		ft_putnbr(pilea->nb);
-		ft_putchar('\n');
-		pilea = pilea->next;
-	}*/
 }

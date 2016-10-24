@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 17:58:14 by stmartin          #+#    #+#             */
-/*   Updated: 2016/10/20 18:44:39 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/10/24 12:06:47 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ void		call_fctn(t_data *pilea, t_data *pileb, long *nb)
 int			main(int ac, char **av)
 {
 	long			*nb;
-	static t_data	*pilea;
-	static t_data	*pileb;
+	t_data	*pilea;
+	t_data	*pileb;
 
+	pilea = NULL;
+	pileb = NULL;
 	nb = (long *)malloc(sizeof(long) * (ac - 1));
 	if (ac > 1 && (!check_av(ac == 2 ? ft_strsplit(av[1], ' ') : av, nb, &pilea, ac == 2 ? 0 : 1)))
 	{
@@ -34,6 +36,6 @@ int			main(int ac, char **av)
 		call_fctn(pilea, pileb, nb);
 	}
 	else
-		ft_putendl_fd("Error", 2); //check av retourne 0 au lieu de 1
+		ft_putendl_fd("Error", 2);
 	return (0);
 }

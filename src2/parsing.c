@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:42:10 by stmartin          #+#    #+#             */
-/*   Updated: 2016/10/20 18:45:22 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/10/24 12:14:25 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int			check_av(char **av, long *nb, t_data **pilea, int x)
 	{
 		while (av && av[x])
 		{
-			ft_putstr(av[x]);
 			y = 0;
 			while (av[x][y] || av[x][y] != ' ' || av[x][y] != '\n')
 			{
@@ -94,10 +93,8 @@ int			check_av(char **av, long *nb, t_data **pilea, int x)
 				else
 					return (1);
 			}
-
-		//	ft_putstr(av[tmp + 1]);
 			nb[tmp] = ft_atol(av[x]);
-			if (nb[x] < INT_MIN || nb[x] > INT_MAX)
+			if (nb[tmp] < INT_MIN || nb[tmp] > INT_MAX)
 				return (1);
 			x++;
 			tmp++;
