@@ -86,7 +86,12 @@ void		do_pa(t_data **pilea, t_data **pileb)
 void		do_ra(t_data **pilea)
 {
 	t_data		*newelem;
+	t_data		*tmp;
 
+	tmp = *pilea;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = list_newnode((*pilea)->nb);
 	if (*pilea)
 	{
 		newelem = list_newnode((*pilea)->nb);
@@ -99,7 +104,12 @@ void		do_ra(t_data **pilea)
 void		do_rb(t_data **pileb)
 {
 	t_data		*newelem;
+	t_data		*tmp;
 
+	tmp = *pileb;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = list_newnode((*pileb)->nb);
 	if (*pileb)
 	{
 		newelem = list_newnode((*pileb)->nb);

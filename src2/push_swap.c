@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int			check_piles(t_data *pilea, t_data *pileb, t_data **last_b)
+/*int			check_piles(t_data *pilea, t_data *pileb, t_data **last_b)
 {
 	t_data		*tmp;
 	int			i;
@@ -53,7 +53,7 @@ int			check_piles(t_data *pilea, t_data *pileb, t_data **last_b)
 			return (4);
 	}
 	return (5);
-}
+}*/
 
 int			check_lista_order(t_data **pil, t_data **last)
 {
@@ -107,7 +107,7 @@ void		move_pilea(t_data **pilea, t_data **pileb, t_data *last, t_data *last_b)
 	check_listb_order(pileb, &last_b);
 
 	if ((*pilea)->nb > last->nb && last->nb < (*pilea)->next->nb)
-		do_rra(pilea); 
+		do_rra(pilea);
 	else if ((*pilea)->nb > (*pilea)->next->nb && (*pilea)->nb > last->nb)
 		do_ra(pilea);
 	else if ((*pilea)->nb > (*pilea)->next->nb && (*pilea)->next->next && (*pilea)->nb < (*pilea)->next->next->nb)
@@ -147,8 +147,11 @@ void		move_pilea(t_data **pilea, t_data **pileb, t_data *last, t_data *last_b)
 
 void		move_pileb(t_data **pilea, t_data **pileb, t_data *lasta, t_data *last_b)
 {
-	check_lista_order(pilea, &lasta);
+	int		ra;
+
+	ra = check_lista_order(pilea, &lasta);
 	check_listb_order(pileb, &last_b);
+
 	if ((*pilea)->next && (*pileb) && (*pileb)->next && (*pilea)->nb > (*pilea)->next->nb && (*pilea)->nb < (*pileb)->nb && (*pileb)->nb > (*pileb)->next->nb)
 	{
 		do_rb(pileb);
@@ -186,13 +189,54 @@ void		move_pileb(t_data **pilea, t_data **pileb, t_data *lasta, t_data *last_b)
 		do_rb(pileb);
 		do_rb(pileb);
 	}
-	else if (*pileb && (*pileb)->next && (*pilea)->nb < (*pilea)->next->nb && (*pilea)->nb < lasta->nb && (*pilea)->nb < (*pileb)->nb && (*pilea)->nb < (*pileb)->next->nb)
+	else if (ra && (*pilea) && (*pilea)->next && (*pileb) && (*pileb)->next && (*pilea)->nb < (*pilea)->next->nb && (*pilea)->nb < (*pileb)->nb && (*pilea)->nb < lasta->nb && (*pilea)->nb > last_b->nb && (*pileb)->next->nb > (*pilea)->nb)
+	{
+		do_pb(pilea, pileb);
+		if ((*pileb)->next)
+			do_sb(*pileb);
+		if ((*pilea) && (*pilea)->next && (*pileb)->nb < (*pilea)->nb && (*pileb)->nb < (*pilea)->next->nb && (*pileb)->nb > (*pileb)->next->nb)
+			do_pa(pilea, pileb);
+	}
+	else if (!ra && *pilea && *pileb && (*pilea)->next && (*pileb)->next && (*pilea)->nb < (*pileb)->nb && (*pileb)->nb < (*pilea)->next->nb && (*pileb)->nb > (*pileb)->next->nb && (*pilea)->nb < lasta->nb)
+	{
+		lasta = (*pilea);
+		do_ra(pilea);
+		do_pa(pilea, pileb);
+		while (*pileb && (*pileb)->nb < (*pilea)->nb)
+		{
+			do_pa(pilea, pileb);
+			if ((*pileb)->nb < lasta->nb && (*pilea)->nb > lasta->nb)
+			{
+				do_rra(pilea);
+				check_lista_order(pilea, &lasta);
+			}
+		}
+		if ((*pilea)->nb > lasta->nb)
+			do_rra(pilea);
+		check_lista_order(pilea, &lasta);
+	}
+	else if (!ra && *pilea && *pileb && (*pilea)->next && (*pileb)->next && (*pilea)->nb < (*pileb)->nb && (*pilea)->nb < (*pilea)->next->nb && (*pilea)->nb < lasta->nb)
+	{
+		while ((*pilea)->nb < (*pileb)->nb)
+		{
+			do_ra(pilea);
+			if ((*pilea)->next && (*pilea)->nb > (*pilea)->next->nb)
+				do_sa(*pilea);
+			if ((*pilea)->nb > (*pileb)->nb && (*pilea)->nb <(*pilea)->next->nb)
+				do_pa(pilea, pileb);
+		ft_putstr("nb:"); ft_putnbr((*pilea)->nb);
+		}
+	}
+
+/*	else if (*pileb && (*pileb)->next && (*pilea)->nb < (*pilea)->next->nb && (*pilea)->nb < lasta->nb && (*pilea)->nb < (*pileb)->nb && (*pilea)->nb < (*pileb)->next->nb)
 	{
 		do_ra(pilea);
 		while ((*pilea)->nb > (*pileb)->nb)
 			do_pa(pilea, pileb);
 		do_rra(pilea);
-	}
+		ft_putstr("111111111111111");
+		
+	}*/
 }
 
 void		move_both(t_data **pilea, t_data **pileb, t_data *last, t_data *last_b)
@@ -205,24 +249,63 @@ void		move_both(t_data **pilea, t_data **pileb, t_data *last, t_data *last_b)
 	do_ss(*pilea, *pileb);
 }
 
+
+
+
+
+/*
+
+
+
+void		change_order(t_data **pa, t_data **pb, t_data **la, t_data **lb)
+{
+	if ((*pa)->next && (*pa)->nb > (*pa)->next->nb && (*pa)->nb > (*la)->nb)
+	{
+		(*la)->nb = (*pa)->nb;
+		do_ra(pa);
+	}
+	if ((*pa)->next && (*pa)->nb < (*pa)->next->nb && (*pa)->nb < (*la)->nb)
+	{
+		do_pb(pa, pb);
+		(*lb)->nb = (*pb)->nb;
+	}
+	else if ((*pb) && (*pb)->next && ((*pa)->nb > (*pb)->nb) || )
+}
+
+
+
+
+
+void		move_pnbs(t_data **pa, t_data **pb, t_data **la, t_data **lb)
+{
+	int		ra;
+	int		rb;
+
+	ra = -1;
+	rb = -1;
+	while (ra && rb)
+	{
+		
+		ra = check_lista_order(pa, la);
+		rb = check_listb_order(pb, lb);
+		change_order(pa, pb, la, lb);
+	}
+}
+
+
+
+*/
+
+
 int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 {
 	int				ret_pila;
 	int				ret_pilb;
-	static t_data	*last_b;
-
-	ret_pila = -1;
-	ret_pilb = -1;
-	if (*pilea)
-		ret_pila = check_lista_order(pilea, &last);
-	if (*pileb)
-		ret_pilb = check_listb_order(pileb, &last_b);
-	if (!ret_pila && ret_pilb == -1)
-		return (1);
 	
 	
 	
-	t_data	*tmp = (*pilea);
+	
+/*	t_data	*tmp = (*pilea);
 	t_data	*tmp2 = (*pileb);
 	ft_putstr("\nA   B\n");
 	while (tmp || tmp2)
@@ -242,8 +325,26 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 		}
 		ft_putchar('\n');
 	}
+	*/
+	
+	static t_data	*last_b;
 
-	if (!ret_pila && !ret_pilb)
+	ret_pila = -1;
+	ret_pilb = -1;
+	if (*pilea)
+		ret_pila = check_lista_order(pilea, &last);
+	if (*pileb)
+		ret_pilb = check_listb_order(pileb, &last_b);
+	if (!ret_pila && ret_pilb == -1)
+	{
+		free(*pileb);
+		return (1);
+	}
+	
+//	if (*pilea && (*pilea)->next)
+//		move_pnbs(pilea, pileb, &last, &last_b);
+
+	if (pileb && !ret_pila && !ret_pilb)
 		do_pa(pilea, pileb);
 	if (*pilea && (*pilea)->next && *pileb && (*pileb)->next && ((*pilea)->nb > (*pilea)->next->nb && (*pileb)->nb < (*pileb)->next->nb))
 		do_ss(*pilea, *pileb);
@@ -251,7 +352,7 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 		move_both(pilea, pileb, last, last_b);
 	if (ret_pilb == 1 && *pileb && (*pileb)->next)
 		move_pileb(pilea, pileb, last, last_b);
-	if (!ret_pila && (*pileb) && (*pilea) && (*pilea)->nb < (*pilea)->next->nb && (*pilea)->nb < (*pilea)->next->nb && (*pileb)->nb > last_b->nb && (*pileb)->nb > (*pileb)->next->nb && (*pileb)->nb < (*pilea)->nb && (*pileb)->nb < last->nb)
+	if (!ret_pila && (*pileb) && (*pilea) && (*pilea)->next && (*pilea)->nb < (*pilea)->next->nb && (*pilea)->nb < (*pilea)->next->nb && (*pileb)->nb > last_b->nb && (*pileb)->nb > (*pileb)->next->nb && (*pileb)->nb < (*pilea)->nb && (*pileb)->nb < last->nb)
 		do_pa(pilea, pileb);
 	if (ret_pila == 1 && *pilea && (*pilea)->next)
 		move_pilea(pilea, pileb, last, last_b);
@@ -260,7 +361,7 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last)
 		do_pb(pilea, pileb);
 		do_sb(*pilea);
 	}
-	if ( !ret_pila && !ret_pilb && (*pileb))
+	if (!ret_pila && !ret_pilb && (*pileb))
 		do_pa(pilea, pileb);
 	return (0);
 }
