@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:57:55 by stmartin          #+#    #+#             */
-/*   Updated: 2016/09/29 17:13:45 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/10/31 19:15:40 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,62 +36,47 @@ void		do_ss(t_data *pilea, t_data *pileb)
 void		do_pb(t_data **pilea, t_data **pileb)
 {
 	t_data		*newelem;
-	t_data		*tmp;
 
-	tmp = *pileb;
 	newelem = NULL;
+	newelem = list_newnode((*pilea)->nb);
 	if (!*pileb && *pilea)
 	{
-		newelem = list_newnode((*pilea)->nb);
 		*pileb = newelem;
 		*pilea = (*pilea)->next;
 	}
 	else if (*pilea && *pileb)
 	{
-		newelem = list_newnode((*pilea)->nb);
-		newelem->next = tmp;
+		newelem->next = *pileb;
 		*pileb = newelem;
 		*pilea = (*pilea)->next;
 	}
-	else
-		ft_putendl("pile a vide, rien n a ete fait");
 	ft_putendl("pb");
 }
 
 void		do_pa(t_data **pilea, t_data **pileb)
 {
 	t_data		*newelem;
-	t_data		*tmp;
 
-	tmp = *pilea;
 	newelem = NULL;
+	newelem = list_newnode((*pileb)->nb);
 	if (!*pilea && *pileb)
 	{
-		newelem = list_newnode((*pileb)->nb);
 		*pilea = newelem;
 		*pileb = (*pileb)->next;
 	}
 	else if (*pilea && *pileb)
 	{
-		newelem = list_newnode((*pileb)->nb);
-		newelem->next = tmp;
+		newelem->next = *pilea;
 		*pilea = newelem;
 		*pileb = (*pileb)->next;
 	}
-	else
-		ft_putendl("pile b vide, rien n a ete fait");
 	ft_putendl("pa");
 }
 
 void		do_ra(t_data **pilea)
 {
 	t_data		*newelem;
-	t_data		*tmp;
 
-	tmp = *pilea;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = list_newnode((*pilea)->nb);
 	if (*pilea)
 	{
 		newelem = list_newnode((*pilea)->nb);
@@ -104,12 +89,7 @@ void		do_ra(t_data **pilea)
 void		do_rb(t_data **pileb)
 {
 	t_data		*newelem;
-	t_data		*tmp;
 
-	tmp = *pileb;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = list_newnode((*pileb)->nb);
 	if (*pileb)
 	{
 		newelem = list_newnode((*pileb)->nb);
@@ -146,7 +126,7 @@ void		do_rra(t_data **pilea)
 		last_node->next = *pilea;
 		*pilea = last_node;
 	}
-	else
+	else if (*pilea && (*pilea)->next && !(*pilea)->next->next)
 		do_sa(*pilea);
 	ft_putendl("rra");
 }
@@ -171,7 +151,7 @@ void		do_rrb(t_data **pileb)
 		last_node->next = *pileb;
 		*pileb = last_node;
 	}
-	else
+	else if (*pileb && (*pileb)->next && !(*pileb)->next->next)
 		do_sb(*pileb);
 	ft_putendl("rrb");
 }
