@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 12:19:33 by stmartin          #+#    #+#             */
-/*   Updated: 2016/10/20 17:58:16 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/11/21 17:45:58 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void		call_fctn(t_data *pilea, t_data *pileb, long *nb)
 	char			*str;
 //	t_data			*tmp;
 //	t_data			*tmp2;
-
 	if (check_double(pilea->lima, nb))
 		return ;
 	if (!(str = (char *)malloc(sizeof(char) * 5)))
@@ -26,16 +25,17 @@ void		call_fctn(t_data *pilea, t_data *pileb, long *nb)
 //	ft_putendl("entrer une instruction");
 	while (fgets(str, sizeof str, stdin))
 	{
-		if (str[0] == '\n')
-		{
-			check_nb_order(pilea, pileb);
-			break;
-		}
-		else if (check_instruction(str, &pilea, &pileb))
+
+		if (check_instruction(str, &pilea, &pileb))
 		{
 			ft_putendl_fd("Error", 2);
 			break;
 		}
+	//	else if (str[0] == '\n')
+	//	{
+	//		check_nb_order(pilea, pileb);
+	//		break;
+	//	}
 /*		tmp = pilea;
 		tmp2 = pileb;
 		ft_putendl("A   B");
@@ -57,6 +57,7 @@ void		call_fctn(t_data *pilea, t_data *pileb, long *nb)
 			ft_putchar('\n');
 		}*/
 	}
+			check_nb_order(pilea, pileb);
 }
 
 int			main(int ac, char **av)
