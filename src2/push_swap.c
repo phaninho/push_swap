@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 19:02:15 by stmartin          #+#    #+#             */
-/*   Updated: 2016/11/21 17:05:24 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/11/21 18:07:52 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -227,7 +227,6 @@ void		move_pileb(t_data **pilea, t_data **pileb, t_data *lasta, t_data *last_b)
 				do_sa(*pilea);
 			if ((*pilea)->nb > (*pileb)->nb && (*pilea)->nb <(*pilea)->next->nb)
 				do_pa(pilea, pileb);
-		ft_putstr("nb:"); ft_putnbr((*pilea)->nb);
 		}
 	}
 
