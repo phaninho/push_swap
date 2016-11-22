@@ -6,54 +6,10 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 19:02:15 by stmartin          #+#    #+#             */
-/*   Updated: 2016/11/21 18:07:52 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/11/22 19:40:45 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-
-/*int			check_piles(t_data *pilea, t_data *pileb, t_data **last_b)
-{
-	t_data		*tmp;
-	int			i;
-
-	if (!pilea)
-		return (1);
-	if (!pileb)
-		return (2);
-	if (pilea && pileb)
-	{
-		tmp = pilea;
-		while (tmp && tmp->next)
-		{
-			if (tmp->nb < tmp->next->nb)
-				tmp = tmp->next;
-			else
-				break;
-			if (!tmp)
-				i = 1;
-		}
-		tmp = pileb;
-		while (tmp && tmp->next)
-		{
-			if (tmp->nb > tmp->next->nb)
-				tmp = tmp->next;
-			else
-				break;
-			if (!tmp)
-				i = i + 2;
-		}
-		while (tmp->next)
-			tmp = tmp->next;
-		*last_b = tmp;
-		if (i == 3)
-			return (0);
-		else if (i == 1)
-			return (3);
-		else if (i == 2)
-			return (4);
-	}
-	return (5);
-}*/
 
 int			check_lista_order(t_data **pil, t_data **last)
 {
@@ -249,63 +205,12 @@ void		move_both(t_data **pilea, t_data **pileb, t_data *last, t_data *last_b)
 	do_ss(*pilea, *pileb);
 }
 
-
-
-
-
-/*
-
-
-
-void		change_order(t_data **pa, t_data **pb, t_data **la, t_data **lb)
-{
-	if ((*pa)->next && (*pa)->nb > (*pa)->next->nb && (*pa)->nb > (*la)->nb)
-	{
-		(*la)->nb = (*pa)->nb;
-		do_ra(pa);
-	}
-	if ((*pa)->next && (*pa)->nb < (*pa)->next->nb && (*pa)->nb < (*la)->nb)
-	{
-		do_pb(pa, pb);
-		(*lb)->nb = (*pb)->nb;
-	}
-	else if ((*pb) && (*pb)->next && ((*pa)->nb > (*pb)->nb) || )
-}
-
-
-
-
-
-void		move_pnbs(t_data **pa, t_data **pb, t_data **la, t_data **lb)
-{
-	int		ra;
-	int		rb;
-
-	ra = -1;
-	rb = -1;
-	while (ra && rb)
-	{
-
-		ra = check_lista_order(pa, la);
-		rb = check_listb_order(pb, lb);
-		change_order(pa, pb, la, lb);
-	}
-}
-
-
-
-*/
-
-
 int			move_nb(t_data **pilea, t_data **pileb, t_data *last, t_data *last_b)
 {
 	int				ret_pila;
 	int				ret_pilb;
 
-
-
-
-/*	t_data	*tmp = (*pilea);
+	/*	t_data	*tmp = (*pilea);
 	t_data	*tmp2 = (*pileb);
 	ft_putstr("\nA   B\n");
 	while (tmp || tmp2)
@@ -339,9 +244,6 @@ int			move_nb(t_data **pilea, t_data **pileb, t_data *last, t_data *last_b)
 		free(*pileb);
 		return (1);
 	}
-
-//	if (*pilea && (*pilea)->next)
-//		move_pnbs(pilea, pileb, &last, &last_b);
 	if ((*pilea)->next && (*pilea)->nb > (*pilea)->next->nb)
 		do_sa(*pilea);
 	else if (*pileb && !ret_pila && !ret_pilb)

@@ -6,7 +6,7 @@
 /*   By: stmartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 13:42:10 by stmartin          #+#    #+#             */
-/*   Updated: 2016/11/21 17:42:22 by stmartin         ###   ########.fr       */
+/*   Updated: 2016/11/22 21:15:17 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,58 +66,6 @@ int			check_double(int lim, long *nb)
 	return (0);
 }
 
-/*int			check_av(char **av, long *nb, t_data **pilea, int x)
-{
-	int		y;
-	int		lim;
-	t_data	*newelem;
-	int		tmp;
-
-	tmp = 0;
-	if (av && av[x])
-	{
-		while (av && av[x])
-		{
-			y = 0;
-			while (av[x][y] && (av[x][y] != ' ' || av[x][y] != '\n'))
-			{
-				if (ft_isdigit(av[x][y]) || (av[x][y] == '-' && ft_isdigit(av[x][y + 1])))
-				{
-					y++;
-					if (av[x][y] == '\0')
-						break;
-				}
-				else
-					return (1);
-			}
-			nb[tmp] = ft_atol(av[x]);
-			if (nb[tmp] < INT_MIN || nb[tmp] > INT_MAX)
-				return (1);
-			x++;
-			tmp++;
-		}
-		lim = x - 1;
-		x = 0;
-		while (x < lim)
-		{
-			newelem = list_newnode(nb[x]);
-			list_addend(newelem, pilea);
-			x++;
-		}
-		//debug____________________________
-		t_data *tmp;
-		tmp = *pilea;
-		while (tmp)
-		{
-			ft_putnbr((tmp)->nb);
-			ft_putchar('\n');
-			tmp = tmp->next;
-		}
-		//_________________________________
-		return (0);
-	}
-	return (1);
-}*/
 int			check_av(char **av, long *nb, t_data **pilea, int x)
 {
 	int		y;
